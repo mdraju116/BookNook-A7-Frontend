@@ -7,7 +7,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-[#263b30] text-[#f8f5ec]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16 lg:py-16">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16 lg:py-12">
         <div>
           <Link href="/" aria-label="BookNook home" className="inline-flex items-center gap-3">
             <span className="flex size-11 items-center justify-center rounded-2xl bg-[#f8f5ec] text-[#315b45]">
@@ -58,7 +58,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/15">
-        <p className="mx-auto max-w-7xl px-5 py-5 text-center text-xs text-[#c4cec3] sm:px-8 ">
+        <p className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-[#c4cec3] sm:px-8 ">
           © {new Date().getFullYear()} BookNook. Made for the love of reading.
         </p>
       </div>

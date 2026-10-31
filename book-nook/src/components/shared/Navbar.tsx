@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
   <header className="sticky top-0 z-40 border-b border-[#e9e2d8] bg-[#fffdf9]/95 backdrop-blur-md">
-    <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-8">
       <div className="flex min-h-19 items-center justify-between gap-6">
         <Link href="/" aria-label="BookNook home" className="group flex shrink-0 items-center gap-3">
           <span className="flex size-11 items-center justify-center rounded-2xl bg-[#315b45] text-[#fffaf0] shadow-sm transition-transform group-hover:-rotate-3">
