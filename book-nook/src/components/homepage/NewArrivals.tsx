@@ -103,7 +103,7 @@ export default function NewArrivals() {
   return (
     <section className="bg-[#fbf8f1] ">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-18">
-        <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
           <div>
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350]">Fresh on the shelves</p>
             <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] sm:text-4xl">New Arrivals</h2>
