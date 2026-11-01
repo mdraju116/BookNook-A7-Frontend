@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
 import { signIn } from "@/lib/auth-client"
+import { useState } from "react";
 
 type SocialProvider = "google" | "github"
 
@@ -29,7 +30,7 @@ const providers: Array<{
 
 export function SocialSignInButtons() {
   const [pendingProvider, setPendingProvider] =
-    React.useState<SocialProvider | null>(null)
+   useState<SocialProvider | null>(null)
 
   const handleSocialSignIn = async (provider: SocialProvider) => {
     if (pendingProvider) return

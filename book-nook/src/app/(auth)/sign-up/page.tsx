@@ -156,7 +156,7 @@ const SignUpPage = () => {
 
   return (
     <main className="mx-auto flex w-full max-w-md flex-col items-center px-4 py-12">
-      <Card className="w-full rounded-3xl border border-[#dce5d9] bg-linear-to-br from-[#fffdf8] via-[#f8f7ef] to-[#e8eee7] shadow-xl shadow-[#315b45]/10">
+      <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#315b45]/15">
         <CardHeader className="text-center">
           <CardTitle className="text-xl font-bold sm:text-2xl">
             Create your account
@@ -174,6 +174,7 @@ const SignUpPage = () => {
               <Field data-invalid={!!errors.name}>
                 <FieldLabel htmlFor="name">Name</FieldLabel>
                 <Input
+                  className="bg-white dark:bg-white"
                   id="name"
                   name="name"
                   type="text"
@@ -190,6 +191,7 @@ const SignUpPage = () => {
               <Field data-invalid={!!errors.image}>
                 <FieldLabel htmlFor="image">Image url (optional)</FieldLabel>
                 <Input
+                  className="bg-white dark:bg-white"
                   id="image"
                   name="image"
                   type="url"
@@ -210,6 +212,7 @@ const SignUpPage = () => {
               <Field data-invalid={!!errors.email}>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
+                  className="bg-white dark:bg-white"
                   id="email"
                   name="email"
                   type="email"
@@ -225,7 +228,7 @@ const SignUpPage = () => {
               {/* Password */}
               <Field data-invalid={!!errors.password}>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
-                <InputGroup>
+                <InputGroup className="bg-white dark:bg-white">
                   <InputGroupInput
                     id="password"
                     name="password"
@@ -260,7 +263,7 @@ const SignUpPage = () => {
                 <FieldLabel htmlFor="confirmPassword">
                   Confirm password
                 </FieldLabel>
-                <InputGroup>
+                <InputGroup className="bg-white dark:bg-white">
                   <InputGroupInput
                     id="confirmPassword"
                     name="confirmPassword"
