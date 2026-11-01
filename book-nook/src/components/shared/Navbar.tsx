@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, Menu, X } from "lucide-react";
-import UserInfo from "../auth/UserInfo";
+import UserMenu from "../auth/UserMenu";
 
 const navlinks = [
   { label: "Home", link: "/" },
@@ -51,8 +51,9 @@ const Navbar = () => {
           })}
         </nav>
 
+        {/* User Area */}
         <div className="hidden shrink-0 items-center gap-3 sm:flex">
-         <UserInfo/>
+         <UserMenu/>
         </div>
 
         {/* humbarger */}
@@ -87,7 +88,7 @@ const Navbar = () => {
               );
             })}
             <div className="border-t border-[#e9e2d8] px-4 pt-3">
-              <UserInfo />
+              <UserMenu />
             </div>
           </div>
         </nav>
