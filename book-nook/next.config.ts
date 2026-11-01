@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      // https://i.ibb.co.com/mCp4Bz2c/image4.png
+      {
+        protocol: "https",
+        hostname: "i.ibb.co.com",
+        pathname: "/**",
+      },
     ],
   },
   turbopack: {

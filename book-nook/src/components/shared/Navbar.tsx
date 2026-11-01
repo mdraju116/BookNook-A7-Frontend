@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, Menu, X } from "lucide-react";
-import UserInfo from "./UserInfo";
+import UserInfo from "../auth/UserInfo";
 
 const navlinks = [
   { label: "Home", link: "/" },
