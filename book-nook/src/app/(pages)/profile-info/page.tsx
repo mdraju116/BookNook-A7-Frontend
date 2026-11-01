@@ -118,11 +118,13 @@ const ProfileInfoPage = () => {
     )
   }
 
+  //show registerd month and year
   const memberSince = new Intl.DateTimeFormat("en-US", {
     month: "short",
     year: "numeric",
   }).format(new Date(user.createdAt))
 
+  
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       {/* Profile page heading */}

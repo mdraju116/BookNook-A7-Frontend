@@ -1,12 +1,164 @@
-import React from 'react';
+"use client"
+
+import { useState, type ChangeEvent, type FormEvent } from "react"
+import Image from "next/image"
+import { BookPlus, ImagePlus, UploadCloud } from "lucide-react"
+import { useSession } from "@/lib/auth-client"
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner"
+import { toast } from "react-hot-toast"
+
+const categories = ["Fiction", "Science", "History", "Kids", "Others"] as const
 
 const AddBookPage = () => {
-    return (
-        <div>
-            add book
-            
-        </div>
-    );
-};
+  const { data: session, isPending } = useSession()
+  const user = session?.user
+  const [isSaving, setIsSaving] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [coverUrl, setCoverUrl] = useState("")
 
-export default AddBookPage;
+  // Upload the selected cover to the server-side ImgBB endpoint.
+  const handleCoverChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith("image/")) {
+      toast.error("Choose an image file for the book cover.")
+      event.target.value = ""
+      return
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("The cover image must be 5 MB or smaller.")
+      event.target.value = ""
+      return
+    }
+
+    const formData = new FormData()
+    formData.set("image", file)
+
+    try {
+      setIsUploading(true)
+      const response = await fetch("/api/uploads/book-cover", { method: "POST", body: formData })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || "Could not upload the cover image.")
+      setCoverUrl(result.url)
+      toast.success("Book cover uploaded.")
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not upload the cover image.")
+      event.target.value = ""
+    } finally {
+      setIsUploading(false)
+    }
+  }
+
+  // Submit the book details after its cover has uploaded.
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isSaving || isUploading) return
+    if (!coverUrl) {
+      toast.error("Upload a book cover before submitting.")
+      return
+    }
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const book = {
+      title: String(formData.get("title") || "").trim(),
+      author: String(formData.get("author") || "").trim(),
+      category: String(formData.get("category") || ""),
+      description: String(formData.get("description") || "").trim(),
+      image: coverUrl,
+    }
+
+    try {
+      setIsSaving(true)
+      const response = await fetch("/api/books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(book),
+      })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || "Could not add this book.")
+      toast.success("Book added successfully!")
+      form.reset()
+      setCoverUrl("")
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not add this book.")
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  if (isPending) {
+    return <div className="flex min-h-96 items-center justify-center gap-3"><Spinner className="text-[#068a3f]" /><span className="text-sm text-[#476552]">Checking your account...</span></div>
+  }
+
+  // Show account details in the form as read-only fields.
+  if (!user) {
+    return <div className="flex min-h-96 items-center justify-center px-4 text-center text-sm text-[#476552]">Sign in to add a book.</div>
+  }
+
+  return (
+    <main className="bg-[#f7fbf7] px-4 py-10 sm:py-14">
+      <section className="mx-auto max-w-3xl">
+        {/* Page heading */}
+        <header className="mb-8 text-center">
+          <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-7" /></div>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#193b27] sm:text-4xl">Add a Book</h1>
+          <p className="mt-3 text-sm text-[#476552] sm:text-base">Share books with the community.</p>
+        </header>
+
+        {/* Book details and cover upload form */}
+        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#315b45]/8 sm:p-8">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="block text-sm font-semibold text-[#193b27]">Book title <span className="text-red-600">*</span>
+              <input name="title" required maxLength={160} placeholder="e.g. The Great Gatsby" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+            </label>
+            <label className="block text-sm font-semibold text-[#193b27]">Author name <span className="text-red-600">*</span>
+              <input name="author" required maxLength={120} placeholder="e.g. F. Scott Fitzgerald" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+            </label>
+          </div>
+
+          <label className="block text-sm font-semibold text-[#193b27]">Category <span className="text-red-600">*</span>
+            <select name="category" required defaultValue="" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15">
+              <option value="" disabled>Select a category</option>
+              {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+            </select>
+          </label>
+
+          <div>
+            {/* Cover image upload and preview */}
+            <span className="block text-sm font-semibold text-[#193b27]">Book image <span className="text-red-600">*</span></span>
+            <label className="mt-2 flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#b7d8bf] bg-[#f7fbf7] px-4 py-5 text-center transition hover:border-[#068a3f] hover:bg-[#f1faf3]">
+              {coverUrl ? <Image src={coverUrl} alt="Uploaded book cover preview" width={96} height={128} unoptimized className="mb-3 h-24 max-w-40 rounded-lg object-cover shadow" /> : <ImagePlus className="mb-2 size-8 text-[#068a3f]" />}
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#315b45]">{isUploading ? <><Spinner className="size-4" /> Uploading cover...</> : <><UploadCloud className="size-4" /> {coverUrl ? "Choose a different image" : "Upload a cover image"}</>}</span>
+              <span className="mt-1 text-xs text-[#6c8473]">PNG, JPG, or WEBP · up to 5 MB</span>
+              <input type="file" accept="image/*" onChange={handleCoverChange} disabled={isUploading || isSaving} className="sr-only" />
+            </label>
+          </div>
+
+          <label className="block text-sm font-semibold text-[#193b27]">Short description <span className="text-red-600">*</span>
+            <textarea name="description" required minLength={10} maxLength={1200} rows={4} placeholder="What should readers know about this book?" className="mt-2 w-full resize-y rounded-xl border border-[#c9dbcd] bg-white px-3 py-2.5 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+          </label>
+
+          {/* Read-only owner information comes from the signed-in session. */}
+          <div className="grid gap-5 rounded-2xl bg-[#f5faf6] p-4 sm:grid-cols-2 sm:p-5">
+            <label className="block text-sm font-semibold text-[#193b27]">Your name
+              <input value={user.name || ""} readOnly className="mt-2 h-11 w-full cursor-not-allowed rounded-xl border border-[#d9e6dc] bg-[#edf4ef] px-3 font-normal text-[#587060]" />
+            </label>
+            <label className="block text-sm font-semibold text-[#193b27]">Your email
+              <input value={user.email || ""} readOnly className="mt-2 h-11 w-full cursor-not-allowed rounded-xl border border-[#d9e6dc] bg-[#edf4ef] px-3 font-normal text-[#587060]" />
+            </label>
+            <p className="text-xs text-[#6c8473] sm:col-span-2">Your account details are attached to this book automatically.</p>
+          </div>
+
+          {/* Submit the new book */}
+          <Button type="submit" disabled={isSaving || isUploading || !coverUrl} className="h-12 w-full rounded-xl bg-[#068a3f] text-base font-semibold text-white shadow-md shadow-[#068a3f]/15 hover:bg-[#057536] disabled:cursor-not-allowed disabled:opacity-60">
+            {isSaving ? <><Spinner className="size-4" /> Adding book...</> : <><BookPlus className="size-4" /> Add Book</>}
+          </Button>
+        </form>
+      </section>
+    </main>
+  )
+}
+
+export default AddBookPage
