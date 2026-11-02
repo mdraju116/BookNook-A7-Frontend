@@ -1,4 +1,5 @@
-import { BookOpen, LibraryBig } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
+import Link from "next/link";
 import type { Book } from "@/types/book";
 import BookCard from "@/components/books/BookCard";
 
@@ -22,18 +23,16 @@ export default async function AllBooksPage() {
     <main className="min-h-[70vh] bg-[#faf9f5]">
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Library title and book count */}
-        <div className="mb-10 flex flex-col justify-between gap-6 border-b border-[#e8e5dc] pb-8 sm:flex-row sm:items-end">
-          <div>
-            <div className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#66816d]">
-              <LibraryBig size={17} /> The BookNook library
-            </div>
-            <h1 className="font-serif text-4xl font-bold tracking-tight text-[#263b30] sm:text-5xl">Browse all books</h1>
-            <p className="mt-3 max-w-xl text-base leading-7 text-[#687168]">
-              Find your next good read, from much-loved classics to new discoveries.
-            </p>
-          </div>
-          {books && <p className="text-sm font-medium text-[#768076]">{books.length} {books.length === 1 ? "book" : "books"} in the collection</p>}
-        </div>
+        <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
+          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#263b30] sm:text-5xl">Browse all books</h1>
+          <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168]">
+            Find your next good read, from much-loved classics to new discoveries.
+          </p>
+          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#315b45] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
+            <ArrowLeft size={17} /> Back to Home
+          </Link>
+          {books && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#315b45] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
+        </header>
 
         {/* Loading error, empty library, or book cards */}
         {books === null ? (

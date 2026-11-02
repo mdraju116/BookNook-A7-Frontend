@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookPlus, RefreshCw, Trash2 } from "lucide-react";
+import { BookPlus, RefreshCw } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import { getClientToken } from "@/lib/access-jwt-at-client-component";
 import { Spinner } from "@/components/ui/spinner";
 import BookCard from "@/components/books/BookCard";
 import UpdateBook from "@/components/books/UpdateBook";
+import DeleteBook from "@/components/books/DeleteBook";
 import type { Book } from "@/types/book";
 
 export default function MyBooksPage() {
@@ -21,6 +22,10 @@ export default function MyBooksPage() {
 
   const handleBookUpdated = (updatedBook: Book) => {
     setBooks((currentBooks) => currentBooks.map((book) => book._id === updatedBook._id ? updatedBook : book));
+  };
+
+  const handleBookDeleted = (bookId: string) => {
+    setBooks((currentBooks) => currentBooks.filter((book) => book._id !== bookId));
   };
 
   useEffect(() => {
@@ -137,9 +142,7 @@ export default function MyBooksPage() {
                 actions={
                   <>
                     <UpdateBook book={book} onUpdated={handleBookUpdated} />
-                    <button type="button" disabled title="Deleting will be available soon" aria-label={`Delete ${book.title || "book"} (coming soon)`} className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-[#ead6d3] px-4 py-2 text-sm font-semibold text-[#9c6861] opacity-70">
-                      <Trash2 size={15} /> Delete
-                    </button>
+                    <DeleteBook book={book} onDeleted={handleBookDeleted} />
                   </>
                 }
               />

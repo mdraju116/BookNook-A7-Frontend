@@ -52,7 +52,7 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
       const jwtToken = await getClientToken();
       if (!jwtToken) throw new Error("Could not verify your session. Please sign in again.");
 
-      const response = await fetch(`${baseUrl}/my-books/${encodeURIComponent(book._id)}`, {
+      const response = await fetch(`${baseUrl}/books/${encodeURIComponent(book._id)}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${jwtToken}`,
