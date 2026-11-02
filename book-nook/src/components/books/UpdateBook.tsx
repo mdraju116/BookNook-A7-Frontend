@@ -1,11 +1,142 @@
-import React from 'react';
+"use client";
 
-const UpdateBook = () => {
-    return (
-        <div>
-            update
-        </div>
-    );
+import { useState, type FormEvent } from "react";
+import { Pencil } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { getClientToken } from "@/lib/access-jwt-at-client-component";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Spinner } from "@/components/ui/spinner";
+import { Textarea } from "@/components/ui/textarea";
+import type { Book } from "@/types/book";
+
+type BookForm = {
+  title: string;
+  author: string;
+  category: string;
+  description: string;
+  image: string;
 };
 
-export default UpdateBook;
+type UpdateBookProps = {
+  book: Book;
+  onUpdated: (updatedBook: Book) => void;
+};
+
+const categories = ["Fiction", "Science", "History", "Kids", "Others"];
+
+function getBookForm(book: Book): BookForm {
+  return {
+    title: book.title || "",
+    author: book.author || "",
+    category: book.category || "",
+    description: book.description || "",
+    image: book.image || "",
+  };
+}
+
+export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [bookForm, setBookForm] = useState<BookForm>(() => getBookForm(book));
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleUpdate = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSaving) return;
+
+    try {
+      setIsSaving(true);
+      const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "");
+      if (!baseUrl) throw new Error("The book server is not configured.");
+
+      const jwtToken = await getClientToken();
+      if (!jwtToken) throw new Error("Could not verify your session. Please sign in again.");
+
+      const response = await fetch(`${baseUrl}/my-books/${encodeURIComponent(book._id)}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookForm),
+      });
+      const result: unknown = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        const message = result && typeof result === "object" && "message" in result && typeof result.message === "string"
+          ? result.message
+          : "Could not update this book. Please try again.";
+        throw new Error(message);
+      }
+
+      onUpdated({ ...book, ...bookForm });
+      setIsOpen(false);
+      toast.success("Book updated successfully.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not update this book. Please try again.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const openDialog = () => {
+    setBookForm(getBookForm(book));
+    setIsOpen(true);
+  };
+
+  return (
+    <>
+      <button type="button" onClick={openDialog} aria-label={`Edit ${book.title || "book"}`} className="inline-flex items-center gap-2 rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#315b45] transition hover:bg-[#f1f5ef]">
+        <Pencil size={15} /> Edit
+      </button>
+
+      <Dialog open={isOpen} onOpenChange={(open) => {
+        if (!isSaving) setIsOpen(open);
+      }}>
+        <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-xl">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl font-bold text-[#263b30]">Edit book</DialogTitle>
+            <DialogDescription>Update the book details, then save your changes.</DialogDescription>
+          </DialogHeader>
+
+          <form onSubmit={handleUpdate} className="space-y-4">
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Book title
+              <input required maxLength={160} value={bookForm.title} onChange={(event) => setBookForm((form) => ({ ...form, title: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+            </label>
+
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Author
+              <input required maxLength={120} value={bookForm.author} onChange={(event) => setBookForm((form) => ({ ...form, author: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+            </label>
+
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Category
+              <select required value={bookForm.category} onChange={(event) => setBookForm((form) => ({ ...form, category: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15">
+                <option value="" disabled>Select a category</option>
+                {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+              </select>
+            </label>
+
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Cover image URL
+              <input required type="url" maxLength={2048} value={bookForm.image} onChange={(event) => setBookForm((form) => ({ ...form, image: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+            </label>
+
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Description
+              <Textarea required minLength={10} maxLength={1200} rows={4} value={bookForm.description} onChange={(event) => setBookForm((form) => ({ ...form, description: event.target.value }))} className="mt-1.5 resize-y border-[#c9dbcd] focus-visible:border-[#315b45] focus-visible:ring-[#315b45]/15" />
+            </label>
+
+            <DialogFooter className="mt-5">
+              <Button type="button" variant="outline" disabled={isSaving} onClick={() => setIsOpen(false)}>Cancel</Button>
+              <Button type="submit" disabled={isSaving} className="bg-[#315b45] text-white hover:bg-[#254936]">
+                {isSaving ? <><Spinner className="size-4" /> Saving...</> : "Save changes"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
