@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
+import type { ReactNode } from "react";
 import type { Book } from "@/types/book";
 
 type BookCardProps = {
   book: Book;
   isNew?: boolean;
+  actions?: ReactNode;
 };
 
-export default function BookCard({ book, isNew = false }: BookCardProps) {
+export default function BookCard({ book, isNew = false, actions }: BookCardProps) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#e9e5dc] bg-white shadow-[0_5px_22px_rgba(42,59,46,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(42,59,46,0.11)]">
       {/* Cover image or fallback artwork */}
@@ -32,6 +34,7 @@ export default function BookCard({ book, isNew = false }: BookCardProps) {
         <Link href={`/books/${book._id}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#315b45] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45]">
           View Details <ArrowRight size={16} />
         </Link>
+        {actions && <div className="mt-4 flex flex-wrap gap-2">{actions}</div>}
       </div>
     </article>
   );
