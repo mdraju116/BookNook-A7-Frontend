@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, UserRound } from "lucide-react";
 import Link from "next/link";
 import type { Book } from "@/types/book";
+import BorrowBook from "@/components/books/BorrowBook";
 
 export default async function BookDetailsPage({ params }: PageProps<"/books/[bookid]">) {
   const { bookid } = await params;
@@ -80,9 +81,7 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
             </div>
           </section>
 
-          <button type="button" className="mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#315b45] px-6 py-3 font-semibold text-white transition hover:bg-[#254936] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45]">
-            <BookOpen size={19} /> Borrow This Book
-          </button>
+          <BorrowBook book={book} />
         </div>
       </article>
     </main>
