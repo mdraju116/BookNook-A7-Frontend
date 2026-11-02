@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, UserRound } from "lucide-react";
 import Link from "next/link";
 import type { Book } from "@/types/book";
@@ -45,8 +46,7 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
         {/* Book cover image or fallback artwork */}
         <div className="relative flex min-h-80 items-center justify-center bg-[#edf0e9] p-8 sm:min-h-140">
           {book.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={book.image} alt={`Cover of ${book.title || "book"}`} className="max-h-127.5 w-full rounded-xl object-contain drop-shadow-xl" />
+            <Image src={book.image} alt={`Cover of ${book.title || "book"}`} fill sizes="(max-width: 1024px) 100vw, 50vw" unoptimized className="object-contain p-8 drop-shadow-xl" />
           ) : (
             <div className="flex flex-col items-center gap-4 text-[#78907d]">
               <BookOpen size={64} strokeWidth={1.3} />

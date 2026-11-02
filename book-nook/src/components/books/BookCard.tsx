@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BookOpen } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Book } from "@/types/book";
@@ -15,8 +16,7 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
       {/* Cover image or fallback artwork */}
       <div className="relative aspect-4/3 overflow-hidden bg-[#edf0e9]">
         {book.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={book.image} alt={`Cover of ${book.title || "book"}`} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+          <Image src={book.image} alt={`Cover of ${book.title || "book"}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" unoptimized className="object-cover transition duration-500 group-hover:scale-[1.03]" />
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-3 text-[#7a8d7d]">
             <BookOpen size={42} strokeWidth={1.4} />

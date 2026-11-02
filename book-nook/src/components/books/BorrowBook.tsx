@@ -14,7 +14,7 @@ type BorrowBookProps = {
   book: Book;
 };
 
-const BORROW_PERIOD_DAYS = 14;
+const BORROW_PERIOD_DAYS = 30;
 
 export default function BorrowBook({ book }: BorrowBookProps) {
   const { data: session, isPending } = useSession();
@@ -103,7 +103,7 @@ export default function BorrowBook({ book }: BorrowBookProps) {
               Email
               <input readOnly type="email" value={user?.email || ""} className="mt-1.5 h-10 w-full rounded-lg border border-[#d9e6dc] bg-[#f3f7f3] px-3 font-normal text-[#587060]" />
             </label>
-            <p className="text-xs leading-5 text-[#768076]">Return by {returnDatePreview} (14-day borrowing period).</p>
+            <p className="text-xs leading-5 text-[#768076]">Return by {returnDatePreview} (30-day borrowing period).</p>
 
             <DialogFooter className="mt-5">
               <Button type="button" variant="outline" disabled={isSubmitting} onClick={() => setIsOpen(false)}>Cancel</Button>
