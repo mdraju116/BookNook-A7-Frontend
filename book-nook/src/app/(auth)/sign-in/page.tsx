@@ -107,6 +107,7 @@ const SignInForm = () => {
 
   return (
     <main className="mx-auto flex w-full max-w-md flex-col items-center px-4 py-12">
+      {/* Sign-in card and credentials form */}
       <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#315b45]/15">
         <CardHeader className="text-center">
           <CardTitle className="text-xl font-bold sm:text-2xl">
@@ -119,6 +120,7 @@ const SignInForm = () => {
 
         <CardContent>
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+            {/* Email and password fields */}
             <FieldGroup>
               {/* Email */}
               <Field data-invalid={!!errors.email}>
@@ -210,8 +212,10 @@ const SignInForm = () => {
             </div>
 
             {/* Social sign-in */}
+            {/* Social sign-in options */}
             <SocialSignInButtons />
 
+            {/* Link to account registration */}
             {/* Sign-up link */}
             <p className="flex flex-wrap justify-center gap-1 text-sm">
               <span className="text-muted-foreground">

@@ -22,6 +22,7 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/profile-info",
+    "/books/:bookid",
     "/book-details/:path*", //for dynamic path
     "/my-books/:path*",  
     "/my-borrows/:path*",  

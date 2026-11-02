@@ -56,8 +56,10 @@ const reviews = [
 
 export default function ReaderReviews() {
   return (
+    /* Reader testimonials section */
     <section className="bg-[#fbf8f1] ">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-18">
+        {/* Reviews heading */}
         <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
           <div className="max-w-2xl">
             {/* <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350]">Kind words from our demo readers</p> */}
@@ -68,6 +70,7 @@ export default function ReaderReviews() {
           </div>
         </div>
 
+        {/* Scrollable review cards */}
         <Carousel opts={{ align: "center", loop: true, containScroll: false }}>
           <CarouselContent className="-ml-4">
             {reviews.map((review) => (
@@ -91,6 +94,7 @@ export default function ReaderReviews() {
             ))}
           </CarouselContent>
 
+          {/* Carousel navigation controls */}
           <div className="mt-6 flex justify-center gap-3">
             <CarouselPrevious
               aria-label="Previous review"

@@ -32,6 +32,7 @@ const slides: { image: string; title: string; description: string; alt: string }
 
 const Banner = () => (
   <section aria-label="Discover books" className="mx-auto max-w-7xl px-4 py-5 sm:px-8 sm:py-8">
+    {/* Rotating discovery slides */}
     <Swiper
       modules={[Autoplay, Navigation, Pagination]}
       autoplay={{ delay: 4500, disableOnInteraction: false }}
@@ -43,6 +44,7 @@ const Banner = () => (
     >
       {slides.map(({ image, title, description, alt }, index) => (
         <SwiperSlide key={title}>
+          {/* Slide image, text overlay, and browse link */}
           <div className="relative flex min-h-97 items-center overflow-hidden sm:min-h-115">
             <Image src={image} alt={alt} fill priority={index === 0} className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" />
             

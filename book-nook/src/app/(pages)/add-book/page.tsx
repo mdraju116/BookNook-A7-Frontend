@@ -86,6 +86,7 @@ const AddBookPage = () => {
 
         {/* Book details and cover image URL form */}
         <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#315b45]/8 sm:p-8">
+          {/* Book title and author fields */}
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block text-sm font-semibold text-[#193b27]">Book title <span className="text-red-600">*</span>
               <input name="title" required maxLength={160} placeholder="e.g. The Great Gatsby" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
@@ -95,6 +96,7 @@ const AddBookPage = () => {
             </label>
           </div>
 
+          {/* Category, cover URL, and description fields */}
           <label className="block text-sm font-semibold text-[#193b27]">Category <span className="text-red-600">*</span>
             <select name="category" required defaultValue="" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15">
               <option value="" disabled>Select a category</option>

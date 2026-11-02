@@ -156,6 +156,7 @@ const SignUpPage = () => {
 
   return (
     <main className="mx-auto flex w-full max-w-md flex-col items-center px-4 py-12">
+      {/* Account creation card and registration form */}
       <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#315b45]/15">
         <CardHeader className="text-center">
           <CardTitle className="text-xl font-bold sm:text-2xl">
@@ -169,6 +170,7 @@ const SignUpPage = () => {
 
         <CardContent>
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+            {/* Name, email, password, and confirmation fields */}
             <FieldGroup>
               {/* Name */}
               <Field data-invalid={!!errors.name}>
@@ -319,8 +321,10 @@ const SignUpPage = () => {
             </div>
 
             {/* Social sign-in */}
+            {/* Social sign-up options */}
             <SocialSignInButtons /> {/* see in component*/}
 
+            {/* Link to existing account sign-in */}
             {/* Sign-in link */}
             <p className="flex flex-wrap justify-center gap-1 text-sm">
               <span className="text-muted-foreground">
