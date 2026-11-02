@@ -16,6 +16,17 @@ const nextConfig: NextConfig = {
         hostname: "i.ibb.co.com",
         pathname: "/**",
       },
+
+      //freeimage.host => copy the Direct links/Image URL by clicking the image : https://iili.io/nrivWJ9.jpg 
+      //don't copy the Image address by right click : https://iili.io/nrivWJ9.md.jpg)
+      {
+        protocol: "https",
+        hostname: "iili.io",
+        pathname: "/**",
+      },
+
+
+
     ],
   },
   turbopack: {

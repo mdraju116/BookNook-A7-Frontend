@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, type ChangeEvent, type FormEvent } from "react"
-import Image from "next/image"
-import { BookPlus, ImagePlus, UploadCloud } from "lucide-react"
+import { useState, type FormEvent } from "react"
+import { BookPlus, ImagePlus } from "lucide-react"
 import { useSession } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
@@ -14,48 +13,18 @@ const AddBookPage = () => {
   const { data: session, isPending } = useSession()
   const user = session?.user
   const [isSaving, setIsSaving] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
   const [coverUrl, setCoverUrl] = useState("")
 
-  // Upload the selected cover to the server-side ImgBB endpoint.
-  const handleCoverChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-    if (!file.type.startsWith("image/")) {
-      toast.error("Choose an image file for the book cover.")
-      event.target.value = ""
-      return
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("The cover image must be 5 MB or smaller.")
-      event.target.value = ""
-      return
-    }
-
-    const formData = new FormData()
-    formData.set("image", file)
-
-    try {
-      setIsUploading(true)
-      const response = await fetch("/api/uploads/book-cover", { method: "POST", body: formData })
-      const result = await response.json()
-      if (!response.ok) throw new Error(result.error || "Could not upload the cover image.")
-      setCoverUrl(result.url)
-      toast.success("Book cover uploaded.")
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not upload the cover image.")
-      event.target.value = ""
-    } finally {
-      setIsUploading(false)
-    }
-  }
-
-  // Submit the book details after its cover has uploaded.
+  // Submit the book details without triggering a browser page navigation.
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (isSaving || isUploading) return
+    if (isSaving) return
+    if (!user) {
+      toast.error("Sign in to add a book.")
+      return
+    }
     if (!coverUrl) {
-      toast.error("Upload a book cover before submitting.")
+      toast.error("Enter a book cover image URL before submitting.")
       return
     }
 
@@ -67,11 +36,19 @@ const AddBookPage = () => {
       category: String(formData.get("category") || ""),
       description: String(formData.get("description") || "").trim(),
       image: coverUrl,
+      addedBy: {
+        userId: user.id,
+        name: user.name || "BookNook reader",
+        email: user.email,
+      },
     }
 
     try {
       setIsSaving(true)
-      const response = await fetch("/api/books", {
+      const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "")
+      if (!baseUrl) throw new Error("The book server is not configured.")
+
+      const response = await fetch(`${baseUrl}/add-book`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(book),
@@ -107,7 +84,7 @@ const AddBookPage = () => {
           <p className="mt-3 text-sm text-[#476552] sm:text-base">Share books with the community.</p>
         </header>
 
-        {/* Book details and cover upload form */}
+        {/* Book details and cover image URL form */}
         <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#315b45]/8 sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block text-sm font-semibold text-[#193b27]">Book title <span className="text-red-600">*</span>
@@ -125,16 +102,10 @@ const AddBookPage = () => {
             </select>
           </label>
 
-          <div>
-            {/* Cover image upload and preview */}
-            <span className="block text-sm font-semibold text-[#193b27]">Book image <span className="text-red-600">*</span></span>
-            <label className="mt-2 flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#b7d8bf] bg-[#f7fbf7] px-4 py-5 text-center transition hover:border-[#068a3f] hover:bg-[#f1faf3]">
-              {coverUrl ? <Image src={coverUrl} alt="Uploaded book cover preview" width={96} height={128} unoptimized className="mb-3 h-24 max-w-40 rounded-lg object-cover shadow" /> : <ImagePlus className="mb-2 size-8 text-[#068a3f]" />}
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#315b45]">{isUploading ? <><Spinner className="size-4" /> Uploading cover...</> : <><UploadCloud className="size-4" /> {coverUrl ? "Choose a different image" : "Upload a cover image"}</>}</span>
-              <span className="mt-1 text-xs text-[#6c8473]">PNG, JPG, or WEBP · up to 5 MB</span>
-              <input type="file" accept="image/*" onChange={handleCoverChange} disabled={isUploading || isSaving} className="sr-only" />
-            </label>
-          </div>
+          <label className="block text-sm font-semibold text-[#193b27]">Book image URL <span className="text-red-600">*</span>
+            <input name="image" type="url" required maxLength={2048} value={coverUrl} onChange={(event) => setCoverUrl(event.target.value)} placeholder="https://example.com/book-cover.jpg" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+            {coverUrl && <span className="mt-3 flex items-center gap-2 text-xs text-[#6c8473]"><ImagePlus className="size-4 shrink-0 text-[#068a3f]" /> Image URL entered</span>}
+          </label>
 
           <label className="block text-sm font-semibold text-[#193b27]">Short description <span className="text-red-600">*</span>
             <textarea name="description" required minLength={10} maxLength={1200} rows={4} placeholder="What should readers know about this book?" className="mt-2 w-full resize-y rounded-xl border border-[#c9dbcd] bg-white px-3 py-2.5 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
@@ -152,7 +123,7 @@ const AddBookPage = () => {
           </div>
 
           {/* Submit the new book */}
-          <Button type="submit" disabled={isSaving || isUploading || !coverUrl} className="h-12 w-full rounded-xl bg-[#068a3f] text-base font-semibold text-white shadow-md shadow-[#068a3f]/15 hover:bg-[#057536] disabled:cursor-not-allowed disabled:opacity-60">
+          <Button type="submit" disabled={isSaving || !coverUrl} className="h-12 w-full rounded-xl bg-[#068a3f] text-base font-semibold text-white shadow-md shadow-[#068a3f]/15 hover:bg-[#057536] disabled:cursor-not-allowed disabled:opacity-60">
             {isSaving ? <><Spinner className="size-4" /> Adding book...</> : <><BookPlus className="size-4" /> Add Book</>}
           </Button>
         </form>

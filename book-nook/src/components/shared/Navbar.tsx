@@ -8,7 +8,7 @@ import UserMenu from "../auth/UserMenu";
 
 const navlinks = [
   { label: "Home", link: "/" },
-  { label: "Browse books", link: "/all-books" },
+  { label: "Browse books", link: "/books" },
   { label: "My books", link: "/my-books" },
   { label: "My borrows", link: "/my-borrows" },
   { label: "Add Book", link: "/add-book" },
