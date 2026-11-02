@@ -4,6 +4,7 @@ import BookCard from "@/components/books/BookCard";
 
 export default async function AllBooksPage() {
   let books: Book[] | null = null;
+  
   try {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "");
     if (!baseUrl) throw new Error("The book server is not configured.");

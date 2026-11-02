@@ -6,6 +6,7 @@ import { useSession } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { toast } from "react-hot-toast"
+import { getClientToken } from "@/lib/access-jwt-at-client-component"
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"] as const
 
@@ -44,13 +45,27 @@ const AddBookPage = () => {
     }
 
     try {
+
       setIsSaving(true)
+
       const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "")
       if (!baseUrl) throw new Error("The book server is not configured.")
 
+
+      const jwtToken = await getClientToken();
+      // console.log(" JWT Token:", jwtToken);  //NB: Need to submit the button
+
+      if (!jwtToken) {
+        throw new Error("JWT token is missing");
+      }
+
       const response = await fetch(`${baseUrl}/add-book`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          //send token
+          "Authorization": `Bearer ${jwtToken}`,
+        },
         body: JSON.stringify(book),
       })
       const result = await response.json()
