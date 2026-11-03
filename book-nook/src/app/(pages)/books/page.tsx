@@ -2,6 +2,11 @@ import { ArrowLeft, BookOpen } from "lucide-react";
 import Link from "next/link";
 import type { Book } from "@/types/book";
 import BookCard from "@/components/books/BookCard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  	   title: "All Books",
+	};
 
 export default async function AllBooksPage() {
   let books: Book[] | null = null;

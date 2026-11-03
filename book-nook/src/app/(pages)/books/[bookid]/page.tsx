@@ -4,6 +4,11 @@ import { ArrowLeft, BookOpen, UserRound } from "lucide-react";
 import Link from "next/link";
 import type { Book } from "@/types/book";
 import BorrowBook from "@/components/books/BorrowBook";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Book Details",
+};
 
 export default async function BookDetailsPage({ params }: PageProps<"/books/[bookid]">) {
   const { bookid } = await params;
