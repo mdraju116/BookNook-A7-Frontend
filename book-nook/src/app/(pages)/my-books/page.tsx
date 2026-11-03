@@ -80,7 +80,7 @@ export default function MyBooksPage() {
   if (isPending) {
     return (
       <main className="flex min-h-[60vh] items-center justify-center gap-3 bg-[#faf9f5] px-4">
-        <Spinner className="size-5 text-[#315b45]" />
+        <Spinner className="size-5 text-[#068a3f]" />
         <span className="text-sm font-medium text-[#536657]">Checking your account...</span>
       </main>
     );
@@ -92,7 +92,7 @@ export default function MyBooksPage() {
         <section className="max-w-md rounded-3xl border border-[#e8e5dc] bg-white p-8 text-center shadow-sm">
           <h1 className="font-serif text-2xl font-bold text-[#263b30]">Sign in to see your books</h1>
           <p className="mt-2 text-sm leading-6 text-[#687168]">Your personal collection will be waiting here.</p>
-          <Link href="/sign-in" className="mt-5 inline-flex rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936]">Sign In</Link>
+          <Link href="/sign-in" className="mt-5 inline-flex rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536]">Sign In</Link>
         </section>
       </main>
     );
@@ -122,10 +122,10 @@ export default function MyBooksPage() {
           {/* <p className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#66816d]"><BookPlus size={17} /> Your collection</p> */}
           <h1 className="font-serif text-4xl font-bold tracking-tight text-[#263b30] sm:text-5xl">My Books</h1>
           <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168]">Books you have shared with the BookNook community.</p>
-          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#315b45] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
+          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
             <ArrowLeft size={17} /> Back to Home
           </Link>
-          {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#315b45] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
+          {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
         </header>
 
         {/* Loading error, empty collection, or contributed book cards */}
@@ -133,7 +133,7 @@ export default function MyBooksPage() {
           <div role="alert" className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-14 text-center">
             <h2 className="font-serif text-2xl font-bold text-[#263b30]">We couldn’t load your books</h2>
             <p className="mt-2 text-sm text-[#687168]">{errorMessage}</p>
-            <button type="button" disabled={isLoading} onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936] disabled:cursor-not-allowed disabled:opacity-70">
+            <button type="button" disabled={isLoading} onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] disabled:cursor-not-allowed disabled:opacity-70">
               {isLoading ? <Spinner className="size-4 text-white" label="Retrying books" /> : <RefreshCw size={16} />} {isLoading ? "Retrying..." : "Try again"}
             </button>
           </div>
@@ -142,7 +142,7 @@ export default function MyBooksPage() {
             <BookPlus className="mx-auto mb-4 text-[#78907d]" size={34} />
             <h2 className="font-serif text-2xl font-bold text-[#263b30]">Your shelves are ready</h2>
             <p className="mt-2 text-[#687168]">You haven’t added any books yet. Share one with the community to see it here.</p>
-            <Link href="/add-book" className="mt-5 inline-flex rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936]">Add a Book</Link>
+            <Link href="/add-book" className="mt-5 inline-flex rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536]">Add a Book</Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

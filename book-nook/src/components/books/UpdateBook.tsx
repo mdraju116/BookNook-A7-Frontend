@@ -16,6 +16,7 @@ type BookForm = {
   category: string;
   description: string;
   image: string;
+  totalCopies: string;
 };
 
 type UpdateBookProps = {
@@ -32,6 +33,7 @@ function getBookForm(book: Book): BookForm {
     category: book.category || "",
     description: book.description || "",
     image: book.image || "",
+    totalCopies: String(book.totalCopies ?? 1),
   };
 }
 
@@ -58,7 +60,7 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
           Authorization: `Bearer ${jwtToken}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookForm),
+        body: JSON.stringify({ ...bookForm, totalCopies: Number(bookForm.totalCopies) }),
       });
       const result: unknown = await response.json().catch(() => null);
 
@@ -69,7 +71,7 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
         throw new Error(message);
       }
 
-      onUpdated({ ...book, ...bookForm });
+      onUpdated({ ...book, ...bookForm, totalCopies: Number(bookForm.totalCopies) });
       setIsOpen(false);
       toast.success("Book updated successfully.");
     } catch (error) {
@@ -86,7 +88,7 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
 
   return (
     <>
-      <button type="button" onClick={openDialog} aria-label={`Edit ${book.title || "book"}`} className="inline-flex items-center gap-2 rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#315b45] transition hover:bg-[#f1f5ef]">
+      <button type="button" onClick={openDialog} aria-label={`Edit ${book.title || "book"}`} className="inline-flex items-center gap-2 rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#068a3f] transition hover:bg-[#f1f5ef]">
         <Pencil size={15} /> Edit
       </button>
 
@@ -102,17 +104,17 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
           <form onSubmit={handleUpdate} className="space-y-4">
             <label className="block text-sm font-semibold text-[#34463a]">
               Book title
-              <input required maxLength={160} value={bookForm.title} onChange={(event) => setBookForm((form) => ({ ...form, title: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+              <input required maxLength={160} value={bookForm.title} onChange={(event) => setBookForm((form) => ({ ...form, title: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
             </label>
 
             <label className="block text-sm font-semibold text-[#34463a]">
               Author
-              <input required maxLength={120} value={bookForm.author} onChange={(event) => setBookForm((form) => ({ ...form, author: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+              <input required maxLength={120} value={bookForm.author} onChange={(event) => setBookForm((form) => ({ ...form, author: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
             </label>
 
             <label className="block text-sm font-semibold text-[#34463a]">
               Category
-              <select required value={bookForm.category} onChange={(event) => setBookForm((form) => ({ ...form, category: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15">
+              <select required value={bookForm.category} onChange={(event) => setBookForm((form) => ({ ...form, category: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15">
                 <option value="" disabled>Select a category</option>
                 {categories.map((category) => <option key={category} value={category}>{category}</option>)}
               </select>
@@ -120,17 +122,22 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
 
             <label className="block text-sm font-semibold text-[#34463a]">
               Cover image URL
-              <input required type="url" maxLength={2048} value={bookForm.image} onChange={(event) => setBookForm((form) => ({ ...form, image: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#315b45] focus:ring-2 focus:ring-[#315b45]/15" />
+              <input required type="url" maxLength={2048} value={bookForm.image} onChange={(event) => setBookForm((form) => ({ ...form, image: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+            </label>
+
+            <label className="block text-sm font-semibold text-[#34463a]">
+              Total Copies
+              <input required type="number" min={1} step={1} value={bookForm.totalCopies} onChange={(event) => setBookForm((form) => ({ ...form, totalCopies: event.target.value }))} className="mt-1.5 h-10 w-full rounded-lg border border-[#c9dbcd] bg-white px-3 font-normal outline-none focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
             </label>
 
             <label className="block text-sm font-semibold text-[#34463a]">
               Description
-              <Textarea required minLength={10} maxLength={1200} rows={4} value={bookForm.description} onChange={(event) => setBookForm((form) => ({ ...form, description: event.target.value }))} className="mt-1.5 resize-y border-[#c9dbcd] focus-visible:border-[#315b45] focus-visible:ring-[#315b45]/15" />
+              <Textarea required minLength={10} maxLength={1200} rows={4} value={bookForm.description} onChange={(event) => setBookForm((form) => ({ ...form, description: event.target.value }))} className="mt-1.5 resize-y border-[#c9dbcd] focus-visible:border-[#068a3f] focus-visible:ring-[#068a3f]/15" />
             </label>
 
             <DialogFooter className="mt-5">
               <Button type="button" variant="outline" disabled={isSaving} onClick={() => setIsOpen(false)}>Cancel</Button>
-              <Button type="submit" disabled={isSaving} className="bg-[#315b45] text-white hover:bg-[#254936]">
+              <Button type="submit" disabled={isSaving} className="bg-[#068a3f] text-white hover:bg-[#057536]">
                 {isSaving ? <><Spinner className="size-4" /> Saving...</> : "Save changes"}
               </Button>
             </DialogFooter>

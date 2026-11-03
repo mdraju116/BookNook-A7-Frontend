@@ -5,6 +5,7 @@ export type Book = {
   category?: string;
   description?: string;
   image?: string;
+  totalCopies?: number;
   addedAt?: string;
   addedBy?: {
     name?: string;

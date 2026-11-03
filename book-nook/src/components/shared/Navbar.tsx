@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className="mx-auto max-w-7xl px-4 sm:px-8">
       <div className="flex min-h-19 items-center justify-between gap-6">
         <Link href="/" aria-label="BookNook home" className="group flex shrink-0 items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-[#315b45] text-[#fffaf0] shadow-sm transition-transform group-hover:-rotate-3">
+          <span className="flex size-11 items-center justify-center rounded-2xl bg-[#068a3f] text-[#fffaf0] shadow-sm transition-transform group-hover:-rotate-3">
             <BookOpen size={22} strokeWidth={1.8} />
           </span>
           <span className="leading-tight">
@@ -43,7 +43,7 @@ const Navbar = () => {
               key={link}
               href={link}
               aria-current={active ? "page" : undefined}
-              className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors ${active ? "bg-[#e8eee7] text-[#315b45]" : "text-[#656c64] hover:bg-[#f2f1e9] hover:text-[#315b45]"}`}
+              className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors ${active ? "bg-[#e8eee7] text-[#068a3f]" : "text-[#656c64] hover:bg-[#f2f1e9] hover:text-[#068a3f]"}`}
             >
               {label}
             </Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
         {/* humbarger */}
         <button
           type="button"
-          className="flex size-11 shrink-0 items-center justify-center rounded-full text-[#315b45] transition hover:bg-[#f2f1e9] md:hidden"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full text-[#068a3f] transition hover:bg-[#f2f1e9] md:hidden"
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
@@ -81,7 +81,7 @@ const Navbar = () => {
                 href={link}
                 onClick={() => setMenuOpen(false)}
                 aria-current={active ? "page" : undefined}
-                className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${active ? "bg-[#e8eee7] text-[#315b45]" : "text-[#49584d] hover:bg-[#f2f1e9] hover:text-[#315b45]"}`}
+                className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${active ? "bg-[#e8eee7] text-[#068a3f]" : "text-[#49584d] hover:bg-[#f2f1e9] hover:text-[#068a3f]"}`}
               >
                 {label}
               </Link>

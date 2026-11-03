@@ -63,7 +63,7 @@ export default function ReturnBook({ borrow, onReturned }: ReturnBookProps) {
     <AlertDialog open={isOpen} onOpenChange={(open) => {
       if (!isReturning) setIsOpen(open);
     }}>
-      <button type="button" onClick={() => setIsOpen(true)} className="rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#315b45] transition hover:bg-[#f1f5ef]">
+      <button type="button" onClick={() => setIsOpen(true)} className="rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#068a3f] transition hover:bg-[#f1f5ef]">
         Return Book
       </button>
       <AlertDialogContent>
@@ -75,7 +75,7 @@ export default function ReturnBook({ borrow, onReturned }: ReturnBookProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isReturning}>Cancel</AlertDialogCancel>
-          <AlertDialogAction type="button" onClick={handleReturn} disabled={isReturning} className="bg-[#315b45] text-white hover:bg-[#254936]">
+          <AlertDialogAction type="button" onClick={handleReturn} disabled={isReturning} className="bg-[#068a3f] text-white hover:bg-[#057536]">
             {isReturning ? <><Spinner className="size-4" /> Returning...</> : "Confirm Return"}
           </AlertDialogAction>
         </AlertDialogFooter>

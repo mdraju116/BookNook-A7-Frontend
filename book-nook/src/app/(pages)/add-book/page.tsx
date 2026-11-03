@@ -38,6 +38,7 @@ const AddBookPage = () => {
       category: String(formData.get("category") || ""),
       description: String(formData.get("description") || "").trim(),
       image: coverUrl,
+      totalCopies: Number(formData.get("totalCopies")),
       addedBy: {
         userId: user.id,
         name: user.name || "BookNook reader",
@@ -121,7 +122,7 @@ const AddBookPage = () => {
         </header>
 
         {/* Book details and cover image URL form */}
-        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#315b45]/8 sm:p-8">
+        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#068a3f]/8 sm:p-8">
           {/* Book title and author fields */}
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block text-sm font-semibold text-[#193b27]">Book title <span className="text-red-600">*</span>
@@ -143,6 +144,11 @@ const AddBookPage = () => {
           <label className="block text-sm font-semibold text-[#193b27]">Book image URL <span className="text-red-600">*</span>
             <input name="image" type="url" required maxLength={2048} value={coverUrl} onChange={(event) => setCoverUrl(event.target.value)} placeholder="https://example.com/book-cover.jpg" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
             {coverUrl && <span className="mt-3 flex items-center gap-2 text-xs text-[#6c8473]"><ImagePlus className="size-4 shrink-0 text-[#068a3f]" /> Image URL entered</span>}
+          </label>
+
+          <label className="block text-sm font-semibold text-[#193b27]">Total Copies <span className="text-red-600">*</span>
+            <input name="totalCopies" type="number" required min={1} step={1} defaultValue={1} placeholder="e.g. 3" className="mt-2 h-11 w-full rounded-xl border border-[#c9dbcd] bg-white px-3 font-normal outline-none transition focus:border-[#068a3f] focus:ring-2 focus:ring-[#068a3f]/15" />
+            <span className="mt-1.5 block text-xs font-normal text-[#6c8473]">How many copies are available to borrow?</span>
           </label>
 
           <label className="block text-sm font-semibold text-[#193b27]">Short description <span className="text-red-600">*</span>

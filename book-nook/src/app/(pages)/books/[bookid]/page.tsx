@@ -42,7 +42,7 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
     <main className="min-h-[70vh] bg-[#faf9f5] px-5 py-10 sm:px-8 sm:py-16">
       {/* Return to the complete book collection */}
       <div className="mx-auto max-w-6xl">
-        <Link href="/books" className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#315b45] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45]">
+        <Link href="/books" className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]">
           <ArrowLeft size={17} /> Back to all books
         </Link>
       </div>
@@ -62,11 +62,14 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
 
         {/* Title, description, contributor, and borrow action */}
         <div className="flex flex-col p-6 sm:p-10 lg:p-12">
-          <p className="mb-4 w-fit rounded-full bg-[#e8eee7] px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-[#315b45]">
+          <p className="mb-4 w-fit rounded-full bg-[#e8eee7] px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-[#068a3f]">
             {book.category || "From the collection"}
           </p>
           <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#263b30] sm:text-4xl">{book.title || "Untitled book"}</h1>
           <p className="mt-3 text-lg text-[#687168]">by <span className="font-semibold text-[#405548]">{book.author || "Unknown author"}</span></p>
+          <p className={`mt-4 text-sm font-semibold ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "text-red-600" : "text-[#068a3f]"}`}>
+            {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : `${typeof book.totalCopies === "number" ? book.totalCopies : 1} ${typeof book.totalCopies === "number" && book.totalCopies === 1 ? "copy" : "copies"} available`}
+          </p>
 
           <div className="my-8 h-px bg-[#e9e5dc]" />
 
@@ -78,7 +81,7 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
           <section className="mt-8 rounded-2xl bg-[#f5f7f2] p-5" aria-labelledby="added-by-heading">
             <h2 id="added-by-heading" className="text-xs font-bold uppercase tracking-[0.14em] text-[#829080]">Added by</h2>
             <div className="mt-3 flex items-start gap-3 text-[#405548]">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e5ece3] text-[#315b45]"><UserRound size={19} /></span>
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e5ece3] text-[#068a3f]"><UserRound size={19} /></span>
               <div className="min-w-0">
                 <p className="font-semibold">{addedByName}</p>
                 {addedByEmail && <p className="mt-0.5 break-all text-sm text-[#7a8278]">{addedByEmail}</p>}

@@ -8,16 +8,16 @@ export default function NotFoundPage() {
       <div className="pointer-events-none absolute -bottom-32 -left-24 size-72 rounded-full bg-[#f7e9df] blur-3xl" />
 
       <section className="relative mx-auto w-full max-w-2xl text-center" aria-labelledby="not-found-title">
-        <div className="mx-auto flex size-20 items-center justify-center rounded-[1.6rem] bg-[#315b45] text-[#fffaf0] shadow-xl shadow-[#315b45]/20 sm:size-24">
+        <div className="mx-auto flex size-20 items-center justify-center rounded-[1.6rem] bg-[#068a3f] text-[#fffaf0] shadow-xl shadow-[#068a3f]/20 sm:size-24">
           <BookOpen size={45} strokeWidth={1.8} aria-hidden="true" />
         </div>
 
         <p className="mt-5 font-serif text-6xl font-bold tracking-tight text-[#c45a50] sm:text-8xl">404</p>
-        <h1 id="not-found-title" className="mt-1 font-serif text-2xl font-bold tracking-tight text-[#7f3935] sm:text-4xl">
+        <h1 id="not-found-title" className="mt-2 font-serif text-2xl font-bold tracking-tight text-[#7f3935] sm:text-4xl">
           This page went off the shelf.
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#806c68] sm:text-base">
-          We couldn&apos;t find the page or book you were looking for. Let&apos;s get you back to a good story.
+          We couldn&apos;t find the page you were looking for. Let&apos;s get you back to a good story.
         </p>
 
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">

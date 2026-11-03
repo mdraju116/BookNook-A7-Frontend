@@ -20,7 +20,7 @@ const ExtraSections = () => (
             { number: "03", title: "Enjoy the read", text: "Keep track of your borrowed books from your personal borrow list." },
           ].map((step) => (
             <article key={step.number} className="rounded-2xl border border-[#e9e2d8] bg-[#fbf8f1] p-6 sm:p-7">
-              <span className="flex size-11 items-center justify-center rounded-full bg-[#315b45] font-serif text-lg font-bold text-white">{step.number}</span>
+              <span className="flex size-11 items-center justify-center rounded-full bg-[#068a3f] font-serif text-lg font-bold text-white">{step.number}</span>
               <h3 className="mt-5 font-serif text-xl font-bold text-[#263b30]">{step.title}</h3>
               <p className="mt-2 text-sm leading-6 text-[#68736a]">{step.text}</p>
             </article>

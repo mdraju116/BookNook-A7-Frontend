@@ -23,7 +23,7 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
             <span className="font-serif text-lg">BookNook</span>
           </div>
         )}
-        {isNew && <span className="absolute left-4 top-4 rounded-full bg-[#fffdf9]/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#315b45] shadow-sm">New</span>}
+        {isNew && <span className="absolute left-4 top-4 rounded-full bg-[#fffdf9]/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#068a3f] shadow-sm">New</span>}
       </div>
 
       {/* Book title, category, author, and details link */}
@@ -31,7 +31,10 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#809082]">{book.category || "From the collection"}</p>
         <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug text-[#263b30]">{book.title || "Untitled book"}</h2>
         <p className="mt-2 text-sm text-[#747a72]">by <span className="font-medium text-[#4c5c50]">{book.author || "Unknown author"}</span></p>
-        <Link href={`/books/${book._id}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#315b45] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315b45]">
+        <p className={`mt-3 text-sm font-semibold ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "text-red-600" : "text-[#068a3f]"}`}>
+          {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : `${typeof book.totalCopies === "number" ? book.totalCopies : 1} available`}
+        </p>
+        <Link href={`/books/${book._id}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#068a3f] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]">
           View Details <ArrowRight size={16} />
         </Link>
         {actions && <div className="mt-4 flex flex-wrap gap-2">{actions}</div>}

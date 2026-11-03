@@ -66,7 +66,7 @@ const Banner = () => {
               <p className="mt-5 max-w-lg text-base leading-7 text-white/90 sm:text-lg">{description}</p>
               <Link
                 href="/all-books"
-                className="mt-8 inline-flex items-center rounded-full bg-[#315b45] px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#254936]  focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="mt-8 inline-flex items-center rounded-full bg-[#068a3f] px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#057536]  focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 Browse Books
               </Link>

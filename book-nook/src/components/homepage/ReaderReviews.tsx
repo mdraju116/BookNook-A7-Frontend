@@ -15,7 +15,7 @@ const reviews = [
     book: "The Midnight Library",
     quote: "I found a story that stayed with me long after I turned the last page. The whole experience felt easy and welcoming.",
     initials: "MC",
-    color: "bg-[#e9eee7] text-[#315b45]",
+    color: "bg-[#e9eee7] text-[#068a3f]",
   },
   {
     name: "Omar Farooq",
@@ -98,11 +98,11 @@ export default function ReaderReviews() {
           <div className="mt-6 flex justify-center gap-3">
             <CarouselPrevious
               aria-label="Previous review"
-              className="static inset-auto left-auto right-auto top-auto bottom-auto m-0 size-10 translate-y-0 border-[#d8d2c7] bg-white text-[#315b45] hover:bg-[#315b45] hover:text-white"
+              className="static inset-auto left-auto right-auto top-auto bottom-auto m-0 size-10 translate-y-0 border-[#d8d2c7] bg-white text-[#068a3f] hover:bg-[#068a3f] hover:text-white"
             />
             <CarouselNext
               aria-label="Next review"
-              className="static inset-auto left-auto right-auto top-auto bottom-auto m-0 size-10 translate-y-0 border-[#d8d2c7] bg-white text-[#315b45] hover:bg-[#315b45] hover:text-white"
+              className="static inset-auto left-auto right-auto top-auto bottom-auto m-0 size-10 translate-y-0 border-[#d8d2c7] bg-white text-[#068a3f] hover:bg-[#068a3f] hover:text-white"
             />
           </div>
         </Carousel>

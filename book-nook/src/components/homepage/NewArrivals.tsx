@@ -62,7 +62,7 @@ export default async function NewArrivals() {
         <div className="mt-9 flex justify-center sm:mt-11">
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 rounded-full bg-[#315b45] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#263b30] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#315b45]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#068a3f] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#057536] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#068a3f]"
           >
             See All Books
             <ArrowRight size={17} />

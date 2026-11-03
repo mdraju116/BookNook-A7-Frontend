@@ -217,9 +217,9 @@ const ProfileInfoPage = () => {
       {/* User details, overview stats, and profile actions */}
       <div className="grid items-start gap-6 lg:grid-cols-[0.9fr_1.5fr]">
         {/* Profile summary */}
-        <section className="rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] p-6 shadow-xl shadow-[#315b45]/10 sm:p-8">
+        <section className="rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] p-6 shadow-xl shadow-[#068a3f]/10 sm:p-8">
           <div className="flex flex-col items-center text-center">
-            <div className="mb-5 flex size-28 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-[#d9f0df] text-4xl text-[#068a3f] shadow-lg shadow-[#315b45]/15 sm:size-32">
+            <div className="mb-5 flex size-28 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-[#d9f0df] text-4xl text-[#068a3f] shadow-lg shadow-[#068a3f]/15 sm:size-32">
               {user.image ? (
                 <Image src={user.image} alt={`${user.name || "User"}'s profile picture`} width={128} height={128} className="h-full w-full object-cover" unoptimized />
               ) : (
@@ -240,12 +240,12 @@ const ProfileInfoPage = () => {
         <div className="space-y-6">
           {/* Books and borrow overview */}
           <section className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#315b45]/5 sm:p-6">
+            <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#068a3f]/5 sm:p-6">
               <div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-5" /></div>
               <p className="mt-4 flex h-9 items-center justify-center text-3xl font-bold text-[#193b27]">{isLoadingStats ? <Spinner className="size-7 text-[#068a3f]" label="Loading books added count" /> : statsError ? "—" : booksAdded}</p>
               <p className="mt-1 text-sm text-[#476552]">Books Added</p>
             </div>
-            <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#315b45]/5 sm:p-6">
+            <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#068a3f]/5 sm:p-6">
               <div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f6e9] text-[#068a3f]"><BookOpen className="size-5" /></div>
               <p className="mt-4 flex h-9 items-center justify-center text-3xl font-bold text-[#193b27]">{isLoadingStats ? <Spinner className="size-7 text-[#068a3f]" label="Loading active borrows count" /> : statsError ? "—" : activeBorrows}</p>
               <p className="mt-1 text-sm text-[#476552]">Active Borrows</p>
@@ -253,13 +253,13 @@ const ProfileInfoPage = () => {
           </section>
 
           {/* Quick actions and their expandable forms */}
-          <section className="rounded-3xl border border-[#b7dfc2] bg-white p-6 shadow-xl shadow-[#315b45]/10 sm:p-8">
+          <section className="rounded-3xl border border-[#b7dfc2] bg-white p-6 shadow-xl shadow-[#068a3f]/10 sm:p-8">
             <h2 className="text-xl font-bold text-[#193b27]">Quick Actions</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <Button type="button" onClick={() => { setIsChangingPassword(false); startEditing() }} className="justify-start bg-[#068a3f] text-white hover:bg-[#057536]"><Pencil />Update Profile</Button>
-              <Link href="/add-book" className="inline-flex h-8 items-center justify-start gap-1.5 rounded-lg border border-[#b7dfc2] px-2.5 text-sm font-medium text-[#315b45] transition-colors hover:bg-[#f4fff7]"><BookPlus className="size-4" />Add New Book</Link>
-              <Button type="button" variant="outline" onClick={() => { setIsEditing(false); setIsChangingPassword((open) => !open) }} className="justify-start border-[#b7dfc2] text-[#315b45] hover:bg-[#f4fff7]"><KeyRound />Change Password</Button>
-              <Link href="/my-borrows" className="inline-flex h-8 items-center justify-start gap-1.5 rounded-lg border border-[#b7dfc2] px-2.5 text-sm font-medium text-[#315b45] transition-colors hover:bg-[#f4fff7]"><BookOpen className="size-4" />See your borrows</Link>
+              <Link href="/add-book" className="inline-flex h-8 items-center justify-start gap-1.5 rounded-lg border border-[#b7dfc2] px-2.5 text-sm font-medium text-[#068a3f] transition-colors hover:bg-[#f4fff7]"><BookPlus className="size-4" />Add New Book</Link>
+              <Button type="button" variant="outline" onClick={() => { setIsEditing(false); setIsChangingPassword((open) => !open) }} className="justify-start border-[#b7dfc2] text-[#068a3f] hover:bg-[#f4fff7]"><KeyRound />Change Password</Button>
+              <Link href="/my-borrows" className="inline-flex h-8 items-center justify-start gap-1.5 rounded-lg border border-[#b7dfc2] px-2.5 text-sm font-medium text-[#068a3f] transition-colors hover:bg-[#f4fff7]"><BookOpen className="size-4" />See your borrows</Link>
             </div>
 
             {/* Profile update form */}
@@ -286,8 +286,8 @@ const ProfileInfoPage = () => {
             {isChangingPassword && (
               <form onSubmit={handleChangePassword} className="mt-6 space-y-4 border-t border-[#e0eee4] pt-5">
                 <h3 className="font-semibold text-[#193b27]">Change your password</h3>
-                <label className="block text-sm font-medium text-[#193b27]">Current password<input type="password" required autoComplete="current-password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3a]/40" /></label>
-                <label className="block text-sm font-medium text-[#193b27]">New password<input type="password" required minLength={8} autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3a]/40" /></label>
+                <label className="block text-sm font-medium text-[#193b27]">Current password<input type="password" required autoComplete="current-password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3f]/40" /></label>
+                <label className="block text-sm font-medium text-[#193b27]">New password<input type="password" required minLength={8} autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3f]/40" /></label>
                 <div className="flex gap-3">
                   <Button type="submit" disabled={isSaving} className="bg-[#068a3f] text-white hover:bg-[#057536]">{isSaving ? <Spinner className="size-4 text-white" label="Saving password" /> : <Save />}{isSaving ? "Saving..." : "Save password"}</Button>
                   <Button type="button" variant="outline" onClick={() => setIsChangingPassword(false)} disabled={isSaving} className="border-red-200 text-red-700 hover:bg-red-50 hover:text-red-800"><X />Cancel</Button>
