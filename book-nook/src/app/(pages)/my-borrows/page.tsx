@@ -7,6 +7,7 @@ import { ArrowLeft, BookOpen, RefreshCw } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import { getClientToken } from "@/lib/access-jwt-at-client-component";
 import { Spinner } from "@/components/ui/spinner";
+import ReturnBook from "@/components/books/ReturnBook";
 import type { Borrow } from "@/types/borrow";
 
 function formatDate(value?: string) {
@@ -23,6 +24,10 @@ export default function MyBorrowsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reloadCount, setReloadCount] = useState(0);
+
+  const handleBorrowReturned = (borrowId: string) => {
+    setBorrows((currentBorrows) => currentBorrows.filter((borrow) => borrow._id !== borrowId));
+  };
 
   useEffect(() => {
     if (isPending || !userId) return;
@@ -157,7 +162,7 @@ export default function MyBorrowsPage() {
                     <td className="px-6 py-4 text-sm text-[#687168]">{formatDate(borrow.borrowDate)}</td>
                     <td className="px-6 py-4 text-sm text-[#687168]">{formatDate(borrow.returnDate)}</td>
                     <td className="px-6 py-4">
-                      <button type="button" disabled title="Returning books will be available soon" className="cursor-not-allowed rounded-full border border-[#d9ded5] px-4 py-2 text-sm font-semibold text-[#667267] opacity-60">Return Book</button>
+                      <ReturnBook borrow={borrow} onReturned={handleBorrowReturned} />
                     </td>
                   </tr>
                 ))}
