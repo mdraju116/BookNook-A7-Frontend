@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc"
 import toast from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner"
 import { signIn } from "@/lib/auth-client"
 import { useState } from "react";
 
@@ -65,8 +66,8 @@ export function SocialSignInButtons() {
           disabled={pendingProvider !== null}
           onClick={() => handleSocialSignIn(provider)}
         >
-          {icon}
-          {label}
+          {pendingProvider === provider ? <Spinner className="size-4" label={`${label} loading`} /> : icon}
+          {pendingProvider === provider ? "Connecting..." : label}
         </Button>
       ))}
     </div>

@@ -7,6 +7,7 @@ import { ArrowLeft, BookOpen, RefreshCw } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import { getClientToken } from "@/lib/access-jwt-at-client-component";
 import { Spinner } from "@/components/ui/spinner";
+import { Skeleton } from "@/components/ui/skeleton";
 import ReturnBook from "@/components/books/ReturnBook";
 import type { Borrow } from "@/types/borrow";
 
@@ -98,9 +99,19 @@ export default function MyBorrowsPage() {
 
   if (isLoading) {
     return (
-      <main className="flex min-h-[60vh] items-center justify-center gap-3 bg-[#faf9f5] px-4">
-        <Spinner className="size-5 text-[#315b45]" />
-        <span className="text-sm font-medium text-[#536657]">Loading your borrows...</span>
+      <main className="min-h-[70vh] bg-[#faf9f5]">
+        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+          <header className="mb-10 flex flex-col items-center gap-3 border-b border-[#e8e5dc] pb-8">
+            <Skeleton className="h-12 w-48" />
+            <Skeleton className="h-5 w-80 max-w-full" />
+          </header>
+          <div className="overflow-hidden rounded-3xl border border-[#e8e5dc] bg-white">
+            <Skeleton className="h-14 w-full rounded-none" />
+            <div className="space-y-3 p-6">
+              {Array.from({ length: 5 }, (_, index) => <Skeleton key={index} className="h-20 w-full rounded-xl" />)}
+            </div>
+          </div>
+        </section>
       </main>
     );
   }
@@ -123,8 +134,8 @@ export default function MyBorrowsPage() {
           <div role="alert" className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-14 text-center">
             <h2 className="font-serif text-2xl font-bold text-[#263b30]">We couldn’t load your borrows</h2>
             <p className="mt-2 text-sm text-[#687168]">{errorMessage}</p>
-            <button type="button" onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936]">
-              <RefreshCw size={16} /> Try again
+            <button type="button" disabled={isLoading} onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936] disabled:cursor-not-allowed disabled:opacity-70">
+              {isLoading ? <Spinner className="size-4 text-white" label="Retrying borrows" /> : <RefreshCw size={16} />} {isLoading ? "Retrying..." : "Try again"}
             </button>
           </div>
         ) : borrows.length === 0 ? (
@@ -136,7 +147,7 @@ export default function MyBorrowsPage() {
           </div>
         ) : (
           <div className="overflow-x-auto rounded-3xl border border-[#e8e5dc] bg-white shadow-sm">
-            <table className="w-full min-w-[760px] border-collapse text-left">
+            <table className="w-full min-w-190 border-collapse text-left">
               <thead className="bg-[#f3f5f0] text-xs uppercase tracking-[0.12em] text-[#718071]">
                 <tr>
                   <th scope="col" className="px-6 py-4 font-semibold">Image</th>

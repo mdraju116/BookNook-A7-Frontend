@@ -4,7 +4,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react"
+import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import toast from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,7 @@ import {InputGroup,InputGroupAddon,InputGroupButton,InputGroupInput,} from "@/co
 import { Separator } from "@/components/ui/separator"
 import { signUp } from "@/lib/auth-client"
 import { SocialSignInButtons } from "@/components/auth/SocialSignInButtons"
+import { Spinner } from "@/components/ui/spinner"
 import { useState } from "react";
 
 
@@ -304,7 +305,7 @@ const SignUpPage = () => {
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="animate-spin" />
+                  <Spinner className="size-4 text-white" label="Signing up" />
                   Signing up...
                 </>
               ) : (

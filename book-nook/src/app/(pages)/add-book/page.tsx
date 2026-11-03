@@ -5,6 +5,7 @@ import { BookPlus, ImagePlus } from "lucide-react"
 import { useSession } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
+import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "react-hot-toast"
 import { getClientToken } from "@/lib/access-jwt-at-client-component"
 
@@ -81,7 +82,27 @@ const AddBookPage = () => {
   }
 
   if (isPending) {
-    return <div className="flex min-h-96 items-center justify-center gap-3"><Spinner className="text-[#068a3f]" /><span className="text-sm text-[#476552]">Checking your account...</span></div>
+    return (
+      <main className="bg-[#f7fbf7] px-4 py-10 sm:py-14">
+        <section className="mx-auto max-w-3xl">
+          <header className="mb-8 flex flex-col items-center gap-3">
+            <Skeleton className="size-14 rounded-2xl" />
+            <Skeleton className="h-10 w-52" />
+            <Skeleton className="h-5 w-64" />
+          </header>
+          <div className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl sm:p-8">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Skeleton className="h-16 w-full rounded-xl" />
+              <Skeleton className="h-16 w-full rounded-xl" />
+            </div>
+            <Skeleton className="h-16 w-full rounded-xl" />
+            <Skeleton className="h-16 w-full rounded-xl" />
+            <Skeleton className="h-32 w-full rounded-xl" />
+            <Skeleton className="h-12 w-full rounded-xl" />
+          </div>
+        </section>
+      </main>
+    )
   }
 
   // Show account details in the form as read-only fields.

@@ -6,6 +6,7 @@ import { ArrowLeft, BookPlus, RefreshCw } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import { getClientToken } from "@/lib/access-jwt-at-client-component";
 import { Spinner } from "@/components/ui/spinner";
+import { Skeleton } from "@/components/ui/skeleton";
 import BookCard from "@/components/books/BookCard";
 import UpdateBook from "@/components/books/UpdateBook";
 import DeleteBook from "@/components/books/DeleteBook";
@@ -99,9 +100,16 @@ export default function MyBooksPage() {
 
   if (isLoading) {
     return (
-      <main className="flex min-h-[60vh] items-center justify-center gap-3 bg-[#faf9f5] px-4">
-        <Spinner className="size-5 text-[#315b45]" />
-        <span className="text-sm font-medium text-[#536657]">Loading your books...</span>
+      <main className="min-h-[70vh] bg-[#faf9f5]">
+        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+          <header className="mb-10 flex flex-col items-center gap-3 border-b border-[#e8e5dc] pb-8">
+            <Skeleton className="h-12 w-48" />
+            <Skeleton className="h-5 w-80 max-w-full" />
+          </header>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }, (_, index) => <Skeleton key={index} className="h-80 rounded-3xl" />)}
+          </div>
+        </section>
       </main>
     );
   }
@@ -125,8 +133,8 @@ export default function MyBooksPage() {
           <div role="alert" className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-14 text-center">
             <h2 className="font-serif text-2xl font-bold text-[#263b30]">We couldn’t load your books</h2>
             <p className="mt-2 text-sm text-[#687168]">{errorMessage}</p>
-            <button type="button" onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936]">
-              <RefreshCw size={16} /> Try again
+            <button type="button" disabled={isLoading} onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#315b45] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#254936] disabled:cursor-not-allowed disabled:opacity-70">
+              {isLoading ? <Spinner className="size-4 text-white" label="Retrying books" /> : <RefreshCw size={16} />} {isLoading ? "Retrying..." : "Try again"}
             </button>
           </div>
         ) : books.length === 0 ? (
