@@ -8,6 +8,7 @@ import { changePassword, signOut, updateUser, useSession } from "@/lib/auth-clie
 import { getClientToken } from "@/lib/access-jwt-at-client-component"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
+import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "react-hot-toast"
 import { FaUser } from "react-icons/fa"
 import { BookPlus, BookOpen, KeyRound, LogOut, Pencil, Save, X } from "lucide-react"
@@ -159,10 +160,28 @@ const ProfileInfoPage = () => {
   // Show a loading state while the session is being checked.
   if (isPending) {
     return (
-      <div className="flex min-h-64 items-center justify-center gap-3">
-        <Spinner className="text-[#068a3f]" />
-        <span className="text-sm text-muted-foreground">Loading profile...</span>
-      </div>
+      <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
+        <header className="mb-8 flex flex-col items-center gap-3">
+          <Skeleton className="h-10 w-48" />
+          <Skeleton className="h-5 w-72 max-w-full" />
+        </header>
+        <div className="grid items-start gap-6 lg:grid-cols-[0.9fr_1.5fr]">
+          <section className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-[#e5f6e9] p-8">
+            <Skeleton className="size-32 rounded-full" />
+            <Skeleton className="mt-5 h-8 w-48" />
+            <Skeleton className="mt-2 h-4 w-56" />
+            <Skeleton className="mt-5 h-10 w-44 rounded-full" />
+            <Skeleton className="mt-6 h-10 w-full rounded-lg" />
+          </section>
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <Skeleton className="h-36 rounded-3xl" />
+              <Skeleton className="h-36 rounded-3xl" />
+            </div>
+            <Skeleton className="h-48 rounded-3xl" />
+          </div>
+        </div>
+      </main>
     )
   }
 
@@ -223,12 +242,12 @@ const ProfileInfoPage = () => {
           <section className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#315b45]/5 sm:p-6">
               <div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-5" /></div>
-              <p className="mt-4 text-3xl font-bold text-[#193b27]">{isLoadingStats || statsError ? "—" : booksAdded}</p>
+              <p className="mt-4 flex h-9 items-center justify-center text-3xl font-bold text-[#193b27]">{isLoadingStats ? <Spinner className="size-7 text-[#068a3f]" label="Loading books added count" /> : statsError ? "—" : booksAdded}</p>
               <p className="mt-1 text-sm text-[#476552]">Books Added</p>
             </div>
             <div className="flex flex-col items-center rounded-3xl border border-[#b7dfc2] bg-white p-5 text-center shadow-lg shadow-[#315b45]/5 sm:p-6">
               <div className="flex size-10 items-center justify-center rounded-xl bg-[#e5f6e9] text-[#068a3f]"><BookOpen className="size-5" /></div>
-              <p className="mt-4 text-3xl font-bold text-[#193b27]">{isLoadingStats || statsError ? "—" : activeBorrows}</p>
+              <p className="mt-4 flex h-9 items-center justify-center text-3xl font-bold text-[#193b27]">{isLoadingStats ? <Spinner className="size-7 text-[#068a3f]" label="Loading active borrows count" /> : statsError ? "—" : activeBorrows}</p>
               <p className="mt-1 text-sm text-[#476552]">Active Borrows</p>
             </div>
           </section>

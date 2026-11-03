@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Spinner } from "@/components/ui/spinner";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -30,8 +32,11 @@ const slides: { image: string; title: string; description: string; alt: string }
   },
 ];
 
-const Banner = () => (
-  <section aria-label="Discover books" className="mx-auto max-w-7xl px-4 py-5 sm:px-8 sm:py-8">
+const Banner = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+  <section aria-label="Discover books" aria-busy={isLoading} className="mx-auto max-w-7xl px-4 py-5 sm:px-8 sm:py-8">
     {/* Rotating discovery slides */}
     <Swiper
       modules={[Autoplay, Navigation, Pagination]}
@@ -46,7 +51,12 @@ const Banner = () => (
         <SwiperSlide key={title}>
           {/* Slide image, text overlay, and browse link */}
           <div className="relative flex min-h-97 items-center overflow-hidden sm:min-h-115">
-            <Image src={image} alt={alt} fill priority={index === 0} className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" />
+            {isLoading && index === 0 && (
+              <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#17281f]/45">
+                <Spinner className="size-10 text-white" label="Loading banner" />
+              </div>
+            )}
+            <Image src={image} alt={alt} fill priority={index === 0} className="object-cover" sizes="(max-width: 1280px) 100vw, 1280px" onLoad={index === 0 ? () => setIsLoading(false) : undefined} onError={index === 0 ? () => setIsLoading(false) : undefined} />
             
             <div className="absolute inset-0 bg-linear-to-r from-[#17281f]/85 via-[#17281f]/55 to-transparent" />
             
@@ -67,6 +77,7 @@ const Banner = () => (
       ))}
     </Swiper>
   </section>
-);
+  );
+};
 
 export default Banner;
