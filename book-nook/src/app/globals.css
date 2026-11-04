@@ -2,7 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -90,8 +91,11 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  /* --primary: oklch(0.922 0 0); */
+  /* --primary-foreground: oklch(0.205 0 0); */
+  --primary: #068a3f;
+  --primary-foreground: #ffffff;
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -121,9 +125,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
@@ -142,8 +148,42 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   [data-slot="spinner"] span,
   [data-slot="skeleton"]::before {
     animation-duration: 2.8s;
   }
 }
+
+/*
+ * Theme coverage for the parts of the application that use the original
+ * BookNook palette directly in Tailwind classes. The theme provider toggles
+ * `.dark` on the root element, so these rules keep those existing screens in
+ * sync with the shared design tokens as well.
+ */
+.dark {
+  color-scheme: dark;
+}
+
+.dark main {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Keep homepage card palettes intact while changing only its canvas. */
+.dark .homepage-shell {
+  background-color: var(--background) !important;
+}
+
+.dark .homepage-shell > section {
+  background-color: var(--background) !important;
+}
+
+.dark .page-heading {
+  color: white !important;
+}
+
+.dark .page-subheading {
+  color: var(--muted-foreground) !important;
+}
+

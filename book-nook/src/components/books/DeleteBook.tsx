@@ -70,7 +70,7 @@ export default function DeleteBook({ book, onDeleted }: DeleteBookProps) {
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="font-serif text-lg font-bold text-[#263b30]">Delete this book?</AlertDialogTitle>
+          <AlertDialogTitle className="font-serif text-lg font-bold text-[#263b30] dark:text-white">Delete this book?</AlertDialogTitle>
           <AlertDialogDescription>
             “{book.title || "Untitled book"}” will be removed from your collection. This action cannot be undone.
           </AlertDialogDescription>

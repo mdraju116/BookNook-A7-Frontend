@@ -13,7 +13,7 @@ export default function NotFoundPage() {
         </div>
 
         <p className="mt-5 font-serif text-6xl font-bold tracking-tight text-[#c45a50] sm:text-8xl">404</p>
-        <h1 id="not-found-title" className="mt-2 font-serif text-2xl font-bold tracking-tight text-[#7f3935] sm:text-4xl">
+        <h1 id="not-found-title" className="mt-2 font-serif text-2xl font-bold tracking-tight text-[#7f3935] dark:text-white sm:text-4xl">
           This page went off the shelf.
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#806c68] sm:text-base">

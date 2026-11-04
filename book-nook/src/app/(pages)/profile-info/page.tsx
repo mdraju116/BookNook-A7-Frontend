@@ -206,10 +206,10 @@ const ProfileInfoPage = () => {
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       {/* Profile page heading */}
       <div className="mb-8 text-center">
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#193b27] sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#193b27] dark:text-white sm:text-4xl">
           My Profile
         </h1>
-        <p className="mx-auto mt-2 max-w-md text-sm text-[#476552] sm:text-base">
+        <p className="mx-auto mt-2 max-w-md text-sm text-[#476552] dark:text-white sm:text-base">
           View and manage your account details.
         </p>
       </div>
@@ -226,7 +226,7 @@ const ProfileInfoPage = () => {
                 <FaUser aria-hidden="true" />
               )}
             </div>
-            <h2 className="wrap-break-word text-2xl font-bold text-[#193b27]">{user.name || "BookNook reader"}</h2>
+            <h2 className="wrap-break-word text-2xl font-bold text-[#193b27] dark:text-white">{user.name || "BookNook reader"}</h2>
             <p className="mt-1 break-all text-sm text-[#476552]">{user.email}</p>
             <p className="mt-5 rounded-full border border-[#b7dfc2] bg-white/70 px-4 py-2 text-sm text-[#476552]">
               <span className="font-semibold text-[#193b27]">Member since:</span> {memberSince}
@@ -254,7 +254,7 @@ const ProfileInfoPage = () => {
 
           {/* Quick actions and their expandable forms */}
           <section className="rounded-3xl border border-[#b7dfc2] bg-white p-6 shadow-xl shadow-[#068a3f]/10 sm:p-8">
-            <h2 className="text-xl font-bold text-[#193b27]">Quick Actions</h2>
+            <h2 className="text-xl font-bold text-[#193b27] dark:text-white">Quick Actions</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <Button type="button" onClick={() => { setIsChangingPassword(false); startEditing() }} className="justify-start bg-[#068a3f] text-white hover:bg-[#057536]"><Pencil />Update Profile</Button>
               <Link href="/add-book" className="inline-flex h-8 items-center justify-start gap-1.5 rounded-lg border border-[#b7dfc2] px-2.5 text-sm font-medium text-[#068a3f] transition-colors hover:bg-[#f4fff7]"><BookPlus className="size-4" />Add New Book</Link>
@@ -265,7 +265,7 @@ const ProfileInfoPage = () => {
             {/* Profile update form */}
             {isEditing && (
               <form onSubmit={handleUpdateProfile} className="mt-6 space-y-4 border-t border-[#e0eee4] pt-5 text-left">
-                <h3 className="font-semibold text-[#193b27]">Update Profile</h3>
+                <h3 className="font-semibold text-[#193b27] dark:text-white">Update Profile</h3>
                 <label className="block text-sm font-medium text-[#193b27]">
                   Full name
                   <input value={name} onChange={(event) => setName(event.target.value)} required autoComplete="name" className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3f]/40" />
@@ -285,7 +285,7 @@ const ProfileInfoPage = () => {
             {/* Password change form */}
             {isChangingPassword && (
               <form onSubmit={handleChangePassword} className="mt-6 space-y-4 border-t border-[#e0eee4] pt-5">
-                <h3 className="font-semibold text-[#193b27]">Change your password</h3>
+                <h3 className="font-semibold text-[#193b27] dark:text-white">Change your password</h3>
                 <label className="block text-sm font-medium text-[#193b27]">Current password<input type="password" required autoComplete="current-password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3f]/40" /></label>
                 <label className="block text-sm font-medium text-[#193b27]">New password<input type="password" required minLength={8} autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-1.5 h-10 w-full rounded-lg border border-[#b7cdbd] bg-white px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-[#068a3f]/40" /></label>
                 <div className="flex gap-3">

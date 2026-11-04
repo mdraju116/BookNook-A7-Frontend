@@ -29,9 +29,9 @@ export default async function NewArrivals() {
         {/* Section heading */}
         <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
           <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350]">Fresh on the shelves</p>
-            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] sm:text-4xl">New Arrivals</h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] sm:text-base">
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350] dark:text-muted-foreground">Fresh on the shelves</p>
+            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-4xl">New Arrivals</h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] dark:text-muted-foreground sm:text-base">
               Take a look at the latest stories to find their way into BookNook.
             </p>
           </div>
@@ -41,13 +41,13 @@ export default async function NewArrivals() {
         {newestBooks === null ? (
           <div className="rounded-2xl border border-[#e9e2d8] bg-white px-6 py-12 text-center">
             <BookOpen className="mx-auto mb-3 text-[#78907d]" size={32} />
-            <p className="font-serif text-xl font-bold text-[#263b30]">New arrivals are taking a moment</p>
+            <p className="font-serif text-xl font-bold text-[#263b30] dark:text-white">New arrivals are taking a moment</p>
             <p className="mt-2 text-sm text-[#68736a]">Please refresh the page to try loading the collection again.</p>
           </div>
         ) : newestBooks.length === 0 ? (
           <div className="rounded-2xl border border-[#e9e2d8] bg-white px-6 py-12 text-center">
             <BookOpen className="mx-auto mb-3 text-[#78907d]" size={32} />
-            <p className="font-serif text-xl font-bold text-[#263b30]">New stories are on the way</p>
+            <p className="font-serif text-xl font-bold text-[#263b30] dark:text-white">New stories are on the way</p>
             <p className="mt-2 text-sm text-[#68736a]">There are no books in the collection yet. Check back soon.</p>
           </div>
         ) : (

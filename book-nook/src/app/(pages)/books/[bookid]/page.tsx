@@ -62,24 +62,29 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
 
         {/* Title, description, contributor, and borrow action */}
         <div className="flex flex-col p-6 sm:p-10 lg:p-12">
-          <p className="mb-4 w-fit rounded-full bg-[#e8eee7] px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-[#068a3f]">
-            {book.category || "From the collection"}
-          </p>
-          <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#263b30] sm:text-4xl">{book.title || "Untitled book"}</h1>
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <p className="w-fit rounded-full bg-[#e8eafd] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#4b55a8]">
+              {book.category || "From the collection"}
+            </p>
+            <p
+              aria-label={`Available Copies: ${typeof book.totalCopies === "number" ? book.totalCopies : 1}`}
+              className={`shrink-0 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "bg-red-50 text-red-600" : "bg-[#e8eee7] text-[#068a3f]"}`}
+            >
+              Available Copies: <span className="text-base font-extrabold leading-none">{typeof book.totalCopies === "number" ? book.totalCopies : 1}</span>
+            </p>
+          </div>
+          <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#263b30] dark:text-white sm:text-4xl">{book.title || "Untitled book"}</h1>
           <p className="mt-3 text-lg text-[#687168]">by <span className="font-semibold text-[#405548]">{book.author || "Unknown author"}</span></p>
-          <p className={`mt-4 text-sm font-semibold ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "text-red-600" : "text-[#068a3f]"}`}>
-            {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : `${typeof book.totalCopies === "number" ? book.totalCopies : 1} ${typeof book.totalCopies === "number" && book.totalCopies === 1 ? "copy" : "copies"} available`}
-          </p>
 
           <div className="my-8 h-px bg-[#e9e5dc]" />
 
           <section aria-labelledby="book-description-heading">
-            <h2 id="book-description-heading" className="font-serif text-xl font-bold text-[#263b30]">About this book</h2>
+            <h2 id="book-description-heading" className="font-serif text-xl font-bold text-[#263b30] dark:text-white">About this book</h2>
             <p className="mt-3 whitespace-pre-line text-[15px] leading-7 text-[#687168]">{book.description || "No description has been added for this book yet."}</p>
           </section>
 
           <section className="mt-8 rounded-2xl bg-[#f5f7f2] p-5" aria-labelledby="added-by-heading">
-            <h2 id="added-by-heading" className="text-xs font-bold uppercase tracking-[0.14em] text-[#829080]">Added by</h2>
+            <h2 id="added-by-heading" className="text-xs font-bold uppercase tracking-[0.14em] text-[#829080] dark:text-white">Added by</h2>
             <div className="mt-3 flex items-start gap-3 text-[#405548]">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e5ece3] text-[#068a3f]"><UserRound size={19} /></span>
               <div className="min-w-0">

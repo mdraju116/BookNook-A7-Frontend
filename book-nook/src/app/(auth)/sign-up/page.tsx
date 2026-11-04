@@ -160,7 +160,7 @@ const SignUpPage = () => {
       {/* Account creation card and registration form */}
       <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#068a3f]/15">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl font-bold sm:text-2xl">
+          <CardTitle className="text-xl font-bold dark:text-white sm:text-2xl">
             Create your account
           </CardTitle>
           <CardDescription>

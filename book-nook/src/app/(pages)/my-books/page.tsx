@@ -90,7 +90,7 @@ export default function MyBooksPage() {
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-[#faf9f5] px-4 py-12">
         <section className="max-w-md rounded-3xl border border-[#e8e5dc] bg-white p-8 text-center shadow-sm">
-          <h1 className="font-serif text-2xl font-bold text-[#263b30]">Sign in to see your books</h1>
+          <h1 className="font-serif text-2xl font-bold text-[#263b30] dark:text-white">Sign in to see your books</h1>
           <p className="mt-2 text-sm leading-6 text-[#687168]">Your personal collection will be waiting here.</p>
           <Link href="/sign-in" className="mt-5 inline-flex rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536]">Sign In</Link>
         </section>
@@ -120,8 +120,8 @@ export default function MyBooksPage() {
         {/* Page heading and collection count */}
         <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
           {/* <p className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#66816d]"><BookPlus size={17} /> Your collection</p> */}
-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#263b30] sm:text-5xl">My Books</h1>
-          <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168]">Books you have shared with the BookNook community.</p>
+          <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">My Books</h1>
+          <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">Books you have shared with the BookNook community.</p>
           <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
             <ArrowLeft size={17} /> Back to Home
           </Link>
@@ -131,7 +131,7 @@ export default function MyBooksPage() {
         {/* Loading error, empty collection, or contributed book cards */}
         {errorMessage ? (
           <div role="alert" className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-14 text-center">
-            <h2 className="font-serif text-2xl font-bold text-[#263b30]">We couldn’t load your books</h2>
+            <h2 className="font-serif text-2xl font-bold text-[#263b30] dark:text-white">We couldn’t load your books</h2>
             <p className="mt-2 text-sm text-[#687168]">{errorMessage}</p>
             <button type="button" disabled={isLoading} onClick={() => setReloadCount((count) => count + 1)} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] disabled:cursor-not-allowed disabled:opacity-70">
               {isLoading ? <Spinner className="size-4 text-white" label="Retrying books" /> : <RefreshCw size={16} />} {isLoading ? "Retrying..." : "Try again"}
@@ -140,7 +140,7 @@ export default function MyBooksPage() {
         ) : books.length === 0 ? (
           <div className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-16 text-center">
             <BookPlus className="mx-auto mb-4 text-[#78907d]" size={34} />
-            <h2 className="font-serif text-2xl font-bold text-[#263b30]">Your shelves are ready</h2>
+            <h2 className="font-serif text-2xl font-bold text-[#263b30] dark:text-white">Your shelves are ready</h2>
             <p className="mt-2 text-[#687168]">You haven’t added any books yet. Share one with the community to see it here.</p>
             <Link href="/add-book" className="mt-5 inline-flex rounded-full bg-[#068a3f] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536]">Add a Book</Link>
           </div>

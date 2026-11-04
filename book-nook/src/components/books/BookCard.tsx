@@ -28,15 +28,24 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
 
       {/* Book title, category, author, and details link */}
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#809082]">{book.category || "From the collection"}</p>
-        <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug text-[#263b30]">{book.title || "Untitled book"}</h2>
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <p className="rounded-full bg-[#e8eafd] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#4b55a8]">
+            {book.category || "From the collection"}
+          </p>
+          <p
+            aria-label={typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not available" : `${typeof book.totalCopies === "number" ? book.totalCopies : 1} copies available`}
+            className={`shrink-0 rounded-full px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.08em] ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "bg-red-50 text-red-600" : "bg-[#e8eee7] text-[#068a3f]"}`}
+          >
+            {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : <><span className="text-sm font-extrabold leading-none">{typeof book.totalCopies === "number" ? book.totalCopies : 1}</span> available</>}
+          </p>
+        </div>
+        <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug text-[#263b30] dark:text-white">{book.title || "Untitled book"}</h2>
         <p className="mt-2 text-sm text-[#747a72]">by <span className="font-medium text-[#4c5c50]">{book.author || "Unknown author"}</span></p>
-        <p className={`mt-3 text-sm font-semibold ${typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "text-red-600" : "text-[#068a3f]"}`}>
-          {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : `${typeof book.totalCopies === "number" ? book.totalCopies : 1} available`}
-        </p>
-        <Link href={`/books/${book._id}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#068a3f] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]">
-          View Details <ArrowRight size={16} />
-        </Link>
+        <div className="mt-auto flex justify-center pt-4">
+          <Link href={`/books/${book._id}`} className="inline-flex w-fit items-center gap-2 rounded-full bg-[#068a3f] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]">
+            View Details <ArrowRight size={16} />
+          </Link>
+        </div>
         {actions && <div className="mt-4 flex flex-wrap gap-2">{actions}</div>}
       </div>
     </article>

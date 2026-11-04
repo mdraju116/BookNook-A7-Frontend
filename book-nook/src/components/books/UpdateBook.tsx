@@ -97,7 +97,7 @@ export default function UpdateBook({ book, onUpdated }: UpdateBookProps) {
       }}>
         <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-xl">
           <DialogHeader>
-            <DialogTitle className="font-serif text-xl font-bold text-[#263b30]">Edit book</DialogTitle>
+            <DialogTitle className="font-serif text-xl font-bold text-[#263b30] dark:text-white">Edit book</DialogTitle>
             <DialogDescription>Update the book details, then save your changes.</DialogDescription>
           </DialogHeader>
 

@@ -29,8 +29,8 @@ export default async function AllBooksPage() {
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Library title and book count */}
         <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#263b30] sm:text-5xl">Browse all books</h1>
-          <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168]">
+          <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">Browse all books</h1>
+          <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">
             Find your next good read, from much-loved classics to new discoveries.
           </p>
           <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
@@ -43,13 +43,13 @@ export default async function AllBooksPage() {
         {books === null ? (
           <div className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-16 text-center">
             <BookOpen className="mx-auto mb-4 text-[#78907d]" size={34} />
-            <h2 className="font-serif text-2xl font-bold text-[#263b30]">The library is taking a moment</h2>
+            <h2 className="font-serif text-2xl font-bold text-[#263b30] dark:text-white">The library is taking a moment</h2>
             <p className="mt-2 text-[#687168]">We couldn’t load the books right now. Please refresh the page to try again.</p>
           </div>
         ) : books.length === 0 ? (
           <div className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-16 text-center">
             <BookOpen className="mx-auto mb-4 text-[#78907d]" size={34} />
-            <h2 className="font-serif text-2xl font-bold text-[#263b30]">A little room for the first story</h2>
+            <h2 className="font-serif text-2xl font-bold text-[#263b30] dark:text-white">A little room for the first story</h2>
             <p className="mt-2 text-[#687168]">There are no books here yet. Check back soon for something to read.</p>
           </div>
         ) : (

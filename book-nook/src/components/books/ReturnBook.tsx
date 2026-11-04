@@ -68,7 +68,7 @@ export default function ReturnBook({ borrow, onReturned }: ReturnBookProps) {
       </button>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="font-serif text-lg font-bold text-[#263b30]">Return this book?</AlertDialogTitle>
+          <AlertDialogTitle className="font-serif text-lg font-bold text-[#263b30] dark:text-white">Return this book?</AlertDialogTitle>
           <AlertDialogDescription>
             Return &quot;{borrow.bookTitle || "Untitled book"}&quot; and remove it from your borrowed books?
           </AlertDialogDescription>

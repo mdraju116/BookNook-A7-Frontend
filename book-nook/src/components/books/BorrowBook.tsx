@@ -95,7 +95,7 @@ export default function BorrowBook({ book }: BorrowBookProps) {
       }}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle className="font-serif text-xl font-bold text-[#263b30]">Borrow this book</DialogTitle>
+            <DialogTitle className="font-serif text-xl font-bold text-[#263b30] dark:text-white">Borrow this book</DialogTitle>
             <DialogDescription>Confirm your account details to add this book to your borrows.</DialogDescription>
           </DialogHeader>
 

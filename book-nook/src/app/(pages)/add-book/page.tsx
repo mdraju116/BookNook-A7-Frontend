@@ -117,8 +117,8 @@ const AddBookPage = () => {
         {/* Page heading */}
         <header className="mb-8 text-center">
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-7" /></div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#193b27] sm:text-4xl">Add a Book</h1>
-          <p className="mt-3 text-sm text-[#476552] sm:text-base">Share books with the community.</p>
+          <h1 className="page-heading mt-2 text-3xl font-bold tracking-tight text-[#193b27] dark:text-white sm:text-4xl">Add a Book</h1>
+          <p className="page-subheading mt-3 text-sm text-[#476552] dark:text-white sm:text-base">Share books with the community.</p>
         </header>
 
         {/* Book details and cover image URL form */}

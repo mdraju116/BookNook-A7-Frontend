@@ -5,7 +5,7 @@ import ReaderReviews from "@/components/homepage/ReaderReviews";
 
 export default function Home() {
   return (
-    <div>
+    <div className="homepage-shell">
        {/* Hero carousel */}
        <Banner />
        {/* Latest books from the library API */}

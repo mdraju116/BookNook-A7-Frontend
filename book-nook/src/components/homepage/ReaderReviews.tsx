@@ -63,8 +63,8 @@ export default function ReaderReviews() {
         <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
           <div className="max-w-2xl">
             {/* <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350]">Kind words from our demo readers</p> */}
-            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] sm:text-4xl">Reader Reviews</h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] sm:text-base">
+            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-4xl">Reader Reviews</h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] dark:text-muted-foreground sm:text-base">
               A few sample notes about finding and sharing a good book.
             </p>
           </div>
