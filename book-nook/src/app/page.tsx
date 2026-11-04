@@ -1,6 +1,6 @@
 import Banner from "@/components/homepage/Banner";
 import NewArrivals from "@/components/homepage/NewArrivals";
-import ExtraSections from "@/components/homepage/HowToBorrow";
+import HowToBorrow from "@/components/homepage/HowToBorrow";
 import ReaderReviews from "@/components/homepage/ReaderReviews";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
        {/* Latest books from the library API */}
        <NewArrivals />
        {/* Guide to borrowing books */}
-       <ExtraSections />
+       <HowToBorrow />
        {/* Reader review carousel */}
        <ReaderReviews />
     </div>

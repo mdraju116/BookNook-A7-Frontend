@@ -39,7 +39,7 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
             {typeof book.totalCopies === "number" && book.totalCopies <= 0 ? "Not Available" : <><span className="text-sm font-extrabold leading-none">{typeof book.totalCopies === "number" ? book.totalCopies : 1}</span> available</>}
           </p>
         </div>
-        <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug text-[#263b30] dark:text-white">{book.title || "Untitled book"}</h2>
+        <h2 className="line-clamp-2 font-serif text-xl font-bold leading-snug text-[#263b30] dark:text-black">{book.title || "Untitled book"}</h2>
         <p className="mt-2 text-sm text-[#747a72]">by <span className="font-medium text-[#4c5c50]">{book.author || "Unknown author"}</span></p>
         <div className="mt-auto flex justify-center pt-4">
           <Link href={`/books/${book._id}`} className="inline-flex w-fit items-center gap-2 rounded-full bg-[#068a3f] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#057536] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]">

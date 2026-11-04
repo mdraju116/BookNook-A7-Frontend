@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "react-hot-toast"
 import { FaUser } from "react-icons/fa"
 import { BookPlus, BookOpen, KeyRound, LogOut, Pencil, Save, X } from "lucide-react"
+import MotionWrapper from "@/components/MotionWrapper";
 
 const ProfileInfoPage = () => {
   const router = useRouter()
@@ -205,7 +206,8 @@ const ProfileInfoPage = () => {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
       {/* Profile page heading */}
-      <div className="mb-8 text-center">
+      <MotionWrapper>
+      <div className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#193b27] dark:text-white sm:text-4xl">
           My Profile
         </h1>
@@ -213,6 +215,7 @@ const ProfileInfoPage = () => {
           View and manage your account details.
         </p>
       </div>
+      </MotionWrapper>
 
       {/* User details, overview stats, and profile actions */}
       <div className="grid items-start gap-6 lg:grid-cols-[0.9fr_1.5fr]">

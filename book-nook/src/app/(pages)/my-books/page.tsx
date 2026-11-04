@@ -11,6 +11,7 @@ import BookCard from "@/components/books/BookCard";
 import UpdateBook from "@/components/books/UpdateBook";
 import DeleteBook from "@/components/books/DeleteBook";
 import type { Book } from "@/types/book";
+import MotionWrapper from "@/components/MotionWrapper";
 
 export default function MyBooksPage() {
   const { data: session, isPending } = useSession();
@@ -118,15 +119,17 @@ export default function MyBooksPage() {
     <main className="min-h-[70vh] bg-[#faf9f5]">
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Page heading and collection count */}
-        <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
-          {/* <p className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#66816d]"><BookPlus size={17} /> Your collection</p> */}
-          <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">My Books</h1>
-          <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">Books you have shared with the BookNook community.</p>
-          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
-            <ArrowLeft size={17} /> Back to Home
-          </Link>
-          {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
-        </header>
+        <MotionWrapper>
+          <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
+            {/* <p className="mb-3 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#66816d]"><BookPlus size={17} /> Your collection</p> */}
+            <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">My Books</h1>
+            <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">Books you have shared with the BookNook community.</p>
+            <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
+              <ArrowLeft size={17} /> Back to Home
+            </Link>
+            {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
+          </header>
+        </MotionWrapper>
 
         {/* Loading error, empty collection, or contributed book cards */}
         {errorMessage ? (
@@ -146,17 +149,19 @@ export default function MyBooksPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {books.map((book) => (
-              <BookCard
-                key={book._id}
-                book={book}
-                actions={
-                  <>
-                    <UpdateBook book={book} onUpdated={handleBookUpdated} />
-                    <DeleteBook book={book} onDeleted={handleBookDeleted} />
-                  </>
-                }
-              />
+            {books.map((book, index) => (
+              <MotionWrapper key={book._id} delay={index * 0.12}>
+                <BookCard
+                  book={book}
+                  actions={
+                    <>
+                      <UpdateBook book={book} onUpdated={handleBookUpdated} />
+                      <DeleteBook book={book} onDeleted={handleBookDeleted} />
+                    </>
+                  }
+                />
+              </MotionWrapper>
+
             ))}
           </div>
         )}

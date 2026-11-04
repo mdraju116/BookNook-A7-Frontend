@@ -3,14 +3,15 @@ import Link from "next/link";
 import type { Book } from "@/types/book";
 import BookCard from "@/components/books/BookCard";
 import type { Metadata } from "next";
+import MotionWrapper from "@/components/MotionWrapper";
 
 export const metadata: Metadata = {
-  	   title: "All Books",
-	};
+  title: "All Books",
+};
 
 export default async function AllBooksPage() {
   let books: Book[] | null = null;
-  
+
   try {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "");
     if (!baseUrl) throw new Error("The book server is not configured.");
@@ -28,17 +29,18 @@ export default async function AllBooksPage() {
     <main className="min-h-[70vh] bg-[#faf9f5]">
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Library title and book count */}
-        <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
-          <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">Browse all books</h1>
-          <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">
-            Find your next good read, from much-loved classics to new discoveries.
-          </p>
-          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
-            <ArrowLeft size={17} /> Back to Home
-          </Link>
-          {books && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
-        </header>
-
+        <MotionWrapper>
+          <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
+            <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">Browse all books</h1>
+            <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">
+              Find your next good read, from much-loved classics to new discoveries.
+            </p>
+            <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
+              <ArrowLeft size={17} /> Back to Home
+            </Link>
+            {books && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{books.length} {books.length === 1 ? "book" : "books"}</span>}
+          </header>
+        </MotionWrapper>
         {/* Loading error, empty library, or book cards */}
         {books === null ? (
           <div className="rounded-3xl border border-[#e8e5dc] bg-white px-6 py-16 text-center">
@@ -54,8 +56,10 @@ export default async function AllBooksPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {books.map((book) => (
-              <BookCard key={book._id} book={book} />
+            {books.map((book, index) => (
+              <MotionWrapper key={book._id} delay={index * 0.12}>
+                <BookCard book={book} isNew />
+              </MotionWrapper>
             ))}
           </div>
         )}

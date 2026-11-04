@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ReturnBook from "@/components/books/ReturnBook";
 import type { Borrow } from "@/types/borrow";
 import type { Book } from "@/types/book";
+import MotionWrapper from "@/components/MotionWrapper";
 
 function formatDate(value?: string) {
   if (!value) return "—";
@@ -149,6 +150,7 @@ export default function MyBorrowsPage() {
     <main className="min-h-[70vh] bg-[#faf9f5]">
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Page heading and borrow count */}
+        <MotionWrapper>
         <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
           <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">My Borrows</h1>
           <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">Books you are currently borrowing from the community.</p>
@@ -157,6 +159,7 @@ export default function MyBorrowsPage() {
           </Link>
           {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{borrows.length} {borrows.length === 1 ? "book" : "books"}</span>}
         </header>
+        </MotionWrapper>
 
         {/* API error, empty state, or borrowed-books table */}
         {errorMessage ? (

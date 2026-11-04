@@ -8,6 +8,7 @@ import { Spinner } from "@/components/ui/spinner"
 import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "react-hot-toast"
 import { getClientToken } from "@/lib/access-jwt-at-client-component"
+import MotionWrapper from "@/components/MotionWrapper";
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"] as const
 
@@ -114,12 +115,15 @@ const AddBookPage = () => {
   return (
     <main className="bg-[#f7fbf7] px-4 py-10 sm:py-14">
       <section className="mx-auto max-w-3xl">
+
         {/* Page heading */}
-        <header className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-7" /></div>
-          <h1 className="page-heading mt-2 text-3xl font-bold tracking-tight text-[#193b27] dark:text-white sm:text-4xl">Add a Book</h1>
-          <p className="page-subheading mt-3 text-sm text-[#476552] dark:text-white sm:text-base">Share books with the community.</p>
-        </header>
+        <MotionWrapper>
+          <header className="mb-8 text-center">
+            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#e5f6e9] text-[#068a3f]"><BookPlus className="size-7" /></div>
+            <h1 className="page-heading mt-2 text-3xl font-bold tracking-tight text-[#193b27] dark:text-white sm:text-4xl">Add a Book</h1>
+            <p className="page-subheading mt-3 text-sm text-[#476552] dark:text-white sm:text-base">Share books with the community.</p>
+          </header>
+        </MotionWrapper>
 
         {/* Book details and cover image URL form */}
         <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[#d6e9da] bg-white p-5 shadow-xl shadow-[#068a3f]/8 sm:p-8">

@@ -3,6 +3,8 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import type { Book } from "@/types/book";
 import BookCard from "@/components/books/BookCard";
 
+import MotionWrapper from "@/components/MotionWrapper";
+
 export default async function NewArrivals() {
   // Fetch the latest six books from the backend.
   let books: Book[] | null = null;
@@ -26,16 +28,19 @@ export default async function NewArrivals() {
     /* New arrivals section */
     <section className="bg-[#fbf8f1]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-18">
+       
         {/* Section heading */}
-        <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
-          <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350] dark:text-muted-foreground">Fresh on the shelves</p>
-            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-4xl">New Arrivals</h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] dark:text-muted-foreground sm:text-base">
-              Take a look at the latest stories to find their way into BookNook.
-            </p>
+        <MotionWrapper>
+          <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
+            <div>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#8c7350] dark:text-muted-foreground">Fresh on the shelves</p>
+              <h2 className="font-serif text-3xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-4xl">New Arrivals</h2>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-[#68736a] dark:text-muted-foreground sm:text-base">
+                Take a look at the latest stories to find their way into BookNook.
+              </p>
+            </div>
           </div>
-        </div>
+        </MotionWrapper>
 
         {/* API error, empty state, or latest book cards */}
         {newestBooks === null ? (
@@ -52,8 +57,10 @@ export default async function NewArrivals() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-7">
-            {newestBooks.map((book) => (
-              <BookCard key={book._id} book={book} isNew />
+            {newestBooks.map((book,index) => (
+              <MotionWrapper key={book._id} delay={index * 0.12}>
+              <BookCard  book={book} isNew />
+              </MotionWrapper>
             ))}
           </div>
         )}
