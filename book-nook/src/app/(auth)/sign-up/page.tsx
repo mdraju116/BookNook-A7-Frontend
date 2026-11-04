@@ -160,10 +160,10 @@ const SignUpPage = () => {
       {/* Account creation card and registration form */}
       <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#068a3f]/15">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl font-bold dark:text-white sm:text-2xl">
+          <CardTitle className="text-xl font-bold dark:text-black sm:text-2xl">
             Create your account
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="dark:text-black/80">
             Sign up to see detailed Pages.
           </CardDescription>
         </CardHeader>
@@ -175,9 +175,9 @@ const SignUpPage = () => {
             <FieldGroup>
               {/* Name */}
               <Field data-invalid={!!errors.name}>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <FieldLabel htmlFor="name" className="dark:text-black">Name</FieldLabel>
                 <Input
-                  className="bg-white dark:bg-white"
+                  className="bg-white dark:bg-white dark:text-black "
                   id="name"
                   name="name"
                   type="text"
@@ -192,9 +192,9 @@ const SignUpPage = () => {
 
               {/* Image URL (optional) */}
               <Field data-invalid={!!errors.image}>
-                <FieldLabel htmlFor="image">Image url (optional)</FieldLabel>
+                <FieldLabel htmlFor="image" className="dark:text-black">Image url (optional)</FieldLabel>
                 <Input
-                  className="bg-white dark:bg-white"
+                  className="bg-white dark:bg-white dark:text-black"
                   id="image"
                   name="image"
                   type="url"
@@ -213,9 +213,9 @@ const SignUpPage = () => {
 
               {/* Email */}
               <Field data-invalid={!!errors.email}>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email" className="dark:text-black">Email</FieldLabel>
                 <Input
-                  className="bg-white dark:bg-white"
+                  className="bg-white dark:bg-white dark:text-black"
                   id="email"
                   name="email"
                   type="email"
@@ -230,8 +230,8 @@ const SignUpPage = () => {
 
               {/* Password */}
               <Field data-invalid={!!errors.password}>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <InputGroup className="bg-white dark:bg-white">
+                <FieldLabel htmlFor="password" className="dark:text-black">Password</FieldLabel>
+                <InputGroup className="bg-white dark:bg-white dark:text-black">
                   <InputGroupInput
                     id="password"
                     name="password"
@@ -254,7 +254,7 @@ const SignUpPage = () => {
                     </InputGroupButton>
                   </InputGroupAddon>
                 </InputGroup>
-                <FieldDescription>
+                <FieldDescription className="dark:text-black/60">
                   At least 8 characters, one uppercase letter, one number and
                   one special character.
                 </FieldDescription>
@@ -263,10 +263,10 @@ const SignUpPage = () => {
 
               {/* Confirm password */}
               <Field data-invalid={!!errors.confirmPassword}>
-                <FieldLabel htmlFor="confirmPassword">
+                <FieldLabel htmlFor="confirmPassword" className="dark:text-black">
                   Confirm password
                 </FieldLabel>
-                <InputGroup className="bg-white dark:bg-white">
+                <InputGroup className="bg-white dark:bg-white dark:text-black">
                   <InputGroupInput
                     id="confirmPassword"
                     name="confirmPassword"
@@ -316,19 +316,18 @@ const SignUpPage = () => {
             {/* Divider */}
             <div className="relative">
               <Separator />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground dark:text-black dark:bg-white">
                 or continue with
               </span>
             </div>
 
-            {/* Social sign-in */}
+          
             {/* Social sign-up options */}
             <SocialSignInButtons /> {/* see in component*/}
 
             {/* Link to existing account sign-in */}
-            {/* Sign-in link */}
             <p className="flex flex-wrap justify-center gap-1 text-sm">
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground dark:text-black">
                 Already have an account?
               </span>
               <Link
@@ -345,9 +344,9 @@ const SignUpPage = () => {
       {/* Back to home */}
       <Link
         href="/"
-        className="mt-5 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="mt-5 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground dark:text-white"
       >
-        <ArrowLeft className="size-4" />
+        <ArrowLeft className="size-4 dark:text-white" />
         Back to home
       </Link>
     </main>

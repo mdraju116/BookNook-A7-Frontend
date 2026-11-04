@@ -56,15 +56,16 @@ export function SocialSignInButtons() {
   }
 
   return (
-    <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+    <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 dark:text-black ">
       {providers.map(({ provider, label, icon }) => (
         <Button
           key={provider}
           type="button"
           variant="outline"
-          className="w-full"
+          className="w-full dark:bg-white dark:hover:text-[#068a3f] dark:hover:bg-white"
           disabled={pendingProvider !== null}
           onClick={() => handleSocialSignIn(provider)}
+          
         >
           {pendingProvider === provider ? <Spinner className="size-4" label={`${label} loading`} /> : icon}
           {pendingProvider === provider ? "Connecting..." : label}

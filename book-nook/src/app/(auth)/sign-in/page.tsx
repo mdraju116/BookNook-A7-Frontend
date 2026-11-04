@@ -111,10 +111,10 @@ const SignInForm = () => {
       {/* Sign-in card and credentials form */}
       <Card className="w-full rounded-3xl border border-[#b7dfc2] bg-linear-to-br from-[#f4fff7] via-[#e5f6e9] to-[#ccebd6] shadow-xl shadow-[#068a3f]/15">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl font-bold dark:text-white sm:text-2xl">
+          <CardTitle className="text-xl font-bold dark:text-black sm:text-2xl">
             Sign in
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="dark:text-black/70">
             Log in to see detailed pages and view your profile.
           </CardDescription>
         </CardHeader>
@@ -125,9 +125,9 @@ const SignInForm = () => {
             <FieldGroup>
               {/* Email */}
               <Field data-invalid={!!errors.email}>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email" className="dark:text-black">Email</FieldLabel>
                 <Input
-                  className="bg-white dark:bg-white"
+                  className="bg-white dark:bg-white dark:text-black"
                   id="email"
                   name="email"
                   type="email"
@@ -147,8 +147,8 @@ const SignInForm = () => {
 
               {/* Password */}
               <Field data-invalid={!!errors.password}>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <InputGroup className="bg-white dark:bg-white">
+                <FieldLabel htmlFor="password" className="dark:text-black">Password</FieldLabel>
+                <InputGroup className="bg-white dark:bg-white dark:text-black">
                   <InputGroupInput
                     id="password"
                     name="password"
@@ -180,8 +180,9 @@ const SignInForm = () => {
             </FieldGroup>
 
             {/* Remember me */}
-            <label className="flex w-fit items-center gap-2 text-sm font-medium select-none">
+            <label className="flex w-fit items-center gap-2 text-sm font-medium select-none dark:text-black">
               <Checkbox
+                className="dark:border-black"
                 checked={rememberMe}
                 onCheckedChange={(checked) => setRememberMe(checked === true)}
               />
@@ -207,19 +208,18 @@ const SignInForm = () => {
             {/* Divider */}
             <div className="relative">
               <Separator />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-foreground dark:bg-white dark:text-black">
                 or continue with
               </span>
             </div>
 
-            {/* Social sign-in */}
+            
             {/* Social sign-in options */}
             <SocialSignInButtons />
 
-            {/* Link to account registration */}
-            {/* Sign-up link */}
+            {/* Link to account registration */} 
             <p className="flex flex-wrap justify-center gap-1 text-sm">
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground dark:text-black">
                 Don&apos;t have an account?
               </span>
               <Link
@@ -236,7 +236,7 @@ const SignInForm = () => {
       {/* Back to home */}
       <Link
         href="/"
-        className="mt-5 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="mt-5 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground dark:text-white"
       >
         <ArrowLeft className="size-4" />
         Back to home

@@ -81,10 +81,10 @@ const UserMenu = () => {
             aria-expanded={isDropdownOpen}
             aria-haspopup="menu"
             aria-label="Open user menu"
-            className="flex items-center gap-2 rounded-full p-1 transition-colors outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-[#068a3f]/40"
+            className="flex items-center gap-2 rounded-full p-1 transition-colors outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-[#068a3f]/40 dark:hover:bg-[#068a3f]"
           >
             {/* Show real image or default user icon */}
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#068a3f]/10 text-[#068a3f]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#068a3f]/10 text-[#068a3f] ">
               {user.image ? (
                 <Image
                   src={user.image}
@@ -99,7 +99,7 @@ const UserMenu = () => {
               )}
             </div>
 
-            <span className="max-w-28 truncate text-sm font-semibold text-gray-800">
+            <span className="max-w-28 truncate text-sm font-semibold text-gray-800 dark:text-white">
               {user.name?.trim().split(/\s+/)[0] || "User"}
             </span>
 

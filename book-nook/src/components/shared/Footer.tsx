@@ -6,11 +6,14 @@ import { FaFacebookSquare } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#068a3f] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16 lg:py-12">
+    <footer className="bg-[#068a3f] text-white dark:bg-[#0a0a0a] border-t">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16 lg:py-8">
         <div>
-          <Link href="/" aria-label="BookNook home" className="inline-flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-2xl bg-[#f8f5ec] text-[#068a3f]">
+          <Link href="/" aria-label="BookNook home" className="inline-flex items-center gap-3 ">
+            {/* <span className="flex size-11 items-center justify-center rounded-2xl bg-[#f8f5ec] text-[#068a3f] ">
+              <BookOpen size={22} strokeWidth={1.8} />
+            </span> */}
+             <span className="flex size-11 items-center justify-center rounded-2xl bg-[#f8f5ec] text-[#068a3f] shadow-sm transition-transform group-hover:-rotate-3 dark:bg-primary dark:text-foreground">
               <BookOpen size={22} strokeWidth={1.8} />
             </span>
             <span className="font-serif text-2xl font-bold tracking-tight">BookNook</span>
@@ -24,7 +27,7 @@ const Footer = () => {
 
 
          <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-[#e4c99b]">Explore</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-[#e4c99b] pt-4">Explore</h2>
           <ul className="mt-5 space-y-3 text-sm text-white/90">
             <li><Link className="transition hover:text-white" href="/all-books">Browse books</Link></li>
             <li><Link className="transition hover:text-white" href="/my-books">My books</Link></li>
@@ -33,7 +36,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-[#e4c99b]">Get in touch</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-[#e4c99b] pt-4">Get in touch</h2>
           <ul className="mt-5 space-y-4 text-sm text-white/90">
             <li className="flex items-center gap-3"><Mail size={17} className="shrink-0 text-[#e4c99b]" /><a className="transition hover:text-white" href="mailto:hello@booknook.com">hello@booknook.com</a></li>
             

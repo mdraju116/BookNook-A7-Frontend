@@ -52,7 +52,7 @@ const Navbar = () => {
                   key={link}
                   href={link}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors ${
+                  className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors dark:text-white/80 ${
                     active
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-primary"
@@ -100,7 +100,7 @@ const Navbar = () => {
                     href={link}
                     onClick={() => setMenuOpen(false)}
                     aria-current={active ? "page" : undefined}
-                    className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                    className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors dark:text-white/80 ${
                       active
                         ? "bg-primary/10 text-primary"
                         : "text-muted-foreground hover:bg-muted hover:text-primary"
