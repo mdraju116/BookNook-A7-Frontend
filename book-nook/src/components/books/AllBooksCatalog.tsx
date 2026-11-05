@@ -46,16 +46,16 @@ export default function AllBooksCatalog({ books }: Props) {
                     </div>
 
                     {/* Navigation and Category Filter */}
-                    <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:justify-between">
                         <Link
                             href="/"
-                            className="inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]"
+                            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f]"
                         >
                             <ArrowLeft size={17} /> Back to Home
                         </Link>
 
                         {books && (
-                            <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex flex-wrap items-center justify-center gap-3">
                                 {/* Category Dropdown */}
                                 <div className="relative">
                                     <select

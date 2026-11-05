@@ -150,16 +150,34 @@ export default function MyBorrowsPage() {
     <main className="min-h-[70vh] bg-[#faf9f5]">
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* Page heading and borrow count */}
+
         <MotionWrapper>
-        <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
-          <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">My Borrows</h1>
-          <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">Books you are currently borrowing from the community.</p>
-          <Link href="/" className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:left-0 sm:bottom-8 sm:mt-0">
-            <ArrowLeft size={17} /> Back to Home
-          </Link>
-          {!errorMessage && <span className="mt-4 inline-flex rounded-full bg-[#e8eee7] px-3 py-1.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8 sm:mt-0">{borrows.length} {borrows.length === 1 ? "book" : "books"}</span>}
-        </header>
+          <header className="relative mb-10 border-b border-[#e8e5dc] pb-8 text-center">
+            <h1 className="page-heading font-serif text-4xl font-bold tracking-tight text-[#263b30] dark:text-white sm:text-5xl">
+              My Borrows
+            </h1>
+
+            <p className="page-subheading mx-auto mt-3 max-w-xl text-base leading-7 text-[#687168] dark:text-white">
+              Books you are currently borrowing from the community.
+            </p>
+
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 sm:mt-0">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 rounded-full border border-[#d8ded5] bg-white px-4 py-2.5 text-sm font-semibold text-[#068a3f] shadow-sm transition hover:bg-[#f1f5ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#068a3f] sm:absolute sm:bottom-8 sm:left-0"
+              >
+                <ArrowLeft size={17} /> Back to Home
+              </Link>
+
+              {!errorMessage && (
+                <span className="inline-flex items-center rounded-full bg-[#e8eee7] px-3 py-2.5 text-sm font-semibold text-[#068a3f] sm:absolute sm:right-0 sm:bottom-8">
+                  {borrows.length} {borrows.length === 1 ? "book" : "books"}
+                </span>
+              )}
+            </div>
+          </header>
         </MotionWrapper>
+
 
         {/* API error, empty state, or borrowed-books table */}
         {errorMessage ? (

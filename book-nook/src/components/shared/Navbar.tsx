@@ -53,11 +53,10 @@ const Navbar = () => {
                   key={link}
                   href={link}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors dark:text-white/80 ${
-                    active
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-primary"
-                  }`}
+                  className={`rounded-full px-4 py-2.5 text-md font-bold transition-colors dark:text-white/80 ${active
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-primary"
+                    }`}
                 >
                   {label}
                 </Link>
@@ -101,11 +100,10 @@ const Navbar = () => {
                     href={link}
                     onClick={() => setMenuOpen(false)}
                     aria-current={active ? "page" : undefined}
-                    className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors dark:text-white/80 ${
-                      active
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:bg-muted hover:text-primary"
-                    }`}
+                    className={`rounded-xl px-4 py-3 text-sm font-semibold transition-colors dark:text-white/80 ${active
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted hover:text-primary"
+                      }`}
                   >
                     {label}
                   </Link>
@@ -113,8 +111,8 @@ const Navbar = () => {
               })}
 
               <div className="flex items-center justify-between border-t border-border px-4 pt-3">
-                <ThemeToggle />
-                <UserMenu />
+                <ThemeToggle onAction={() => setMenuOpen(false)} />
+                <UserMenu onAction={() => setMenuOpen(false)} />
               </div>
             </div>
           </nav>

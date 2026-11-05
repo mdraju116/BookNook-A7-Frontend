@@ -5,7 +5,11 @@ import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
-export default function ThemeToggle() {
+type ThemeToggleProps = {
+  onAction?: () => void;
+};
+
+export default function ThemeToggle({ onAction }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
 
   const mounted = useSyncExternalStore(
@@ -18,7 +22,10 @@ export default function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => {
+        setTheme(theme === "dark" ? "light" : "dark");
+        onAction?.();
+      }}
       aria-label="Toggle theme"
     >
       {theme === "dark" ? <Sun /> : <Moon />}

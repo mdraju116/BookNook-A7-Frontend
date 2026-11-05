@@ -85,6 +85,18 @@ export default function ReaderReviews() {
           opts={{ align: "start", loop: true }}
           className="relative"
         >
+          {/* Navigation controls below cards */}
+          <div className="mt-2 mb-2 flex items-center justify-between gap-4">
+            <CarouselPrevious
+              aria-label="Previous review"
+              className="static size-10 translate-y-0 rounded-full border-[#d8d2c7] bg-white text-[#068a3f] shadow-md hover:bg-[#068a3f] hover:text-white dark:bg-white"
+            />
+
+            <CarouselNext
+              aria-label="Next review"
+              className="static size-10 translate-y-0 rounded-full border-[#d8d2c7] bg-white text-[#068a3f] shadow-md hover:bg-[#068a3f] hover:text-white dark:bg-white"
+            />
+          </div>
           <CarouselContent className="-ml-4">
             {reviews.map((review, index) => (
               <CarouselItem
@@ -138,18 +150,7 @@ export default function ReaderReviews() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* Navigation controls below cards */}
-          <div className="mt-6 flex items-center justify-between gap-4">
-            <CarouselPrevious
-              aria-label="Previous review"
-              className="static size-10 translate-y-0 rounded-full border-[#d8d2c7] bg-white text-[#068a3f] shadow-md hover:bg-[#068a3f] hover:text-white dark:bg-white"
-            />
 
-            <CarouselNext
-              aria-label="Next review"
-              className="static size-10 translate-y-0 rounded-full border-[#d8d2c7] bg-white text-[#068a3f] shadow-md hover:bg-[#068a3f] hover:text-white dark:bg-white"
-            />
-          </div>
         </Carousel>
 
 

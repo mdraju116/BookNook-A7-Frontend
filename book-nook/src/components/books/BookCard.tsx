@@ -46,7 +46,7 @@ export default function BookCard({ book, isNew = false, actions }: BookCardProps
             View Details <ArrowRight size={16} />
           </Link>
         </div>
-        {actions && <div className="mt-4 flex flex-wrap gap-2">{actions}</div>}
+        {actions && <div className="mt-4 flex flex-wrap gap-2  justify-between">{actions}</div>}
       </div>
     </article>
   );
