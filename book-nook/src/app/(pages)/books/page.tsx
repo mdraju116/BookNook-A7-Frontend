@@ -57,7 +57,7 @@ export default async function AllBooksPage() {
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {books.map((book, index) => (
-              <MotionWrapper key={book._id} delay={index * 0.12}>
+              <MotionWrapper key={book._id} delay={index * 0.08}>
                 <BookCard book={book} isNew />
               </MotionWrapper>
             ))}
