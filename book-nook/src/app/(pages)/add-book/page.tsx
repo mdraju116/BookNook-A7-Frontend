@@ -12,13 +12,14 @@ import MotionWrapper from "@/components/MotionWrapper";
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"] as const
 
+// Authenticated contribution form for adding a new title to the shared catalog.
 const AddBookPage = () => {
   const { data: session, isPending } = useSession()
   const user = session?.user
   const [isSaving, setIsSaving] = useState(false)
   const [coverUrl, setCoverUrl] = useState("")
 
-  // Submit the book details without triggering a browser page navigation.
+  // Submit book details through the API without triggering a browser page navigation.
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (isSaving) return

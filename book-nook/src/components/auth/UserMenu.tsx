@@ -15,6 +15,7 @@ type UserMenuProps = {
   onAction?: () => void;
 };
 
+// Responsive account menu: exposes auth actions and links to reader-only pages.
 const UserMenu = ({ onAction }: UserMenuProps) => {
   const { data: session, isPending } = useSession();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -42,6 +43,7 @@ const UserMenu = ({ onAction }: UserMenuProps) => {
   }, []);
 
   // Sign out using Better Auth client
+  // Clear the Better Auth session before notifying the parent navigation state.
   const handleSignOut = async () => {
     try {
       setIsSigningOut(true);

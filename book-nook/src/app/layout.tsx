@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   description: "Discover and explore your favorite books.",
 };
 
+// Root shell: provides fonts, theme context, global notifications, navigation, and footer for every route.
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html

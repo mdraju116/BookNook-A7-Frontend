@@ -39,12 +39,14 @@ const initialValues: SignUpValues = {
   confirmPassword: "",
 }
 
+// Registration validators keep malformed profile data out of the auth request.
 function validateName(name: string) {
   if (!name.trim()) return "Name is required"
   if (name.trim().length < 3) return "Name must be at least 3 characters"
   return undefined
 }
 
+// The profile image is optional, but when provided it must be a usable URL.
 function validateImage(image: string) {
   const trimmed = image.trim()
   if (!trimmed) return undefined // optional
@@ -60,6 +62,7 @@ function validateImage(image: string) {
   return undefined
 }
 
+// Validate the email before submitting it to Better Auth.
 function validateEmail(email: string) {
   if (!email.trim()) return "Email is required"
   if (!EMAIL_PATTERN.test(email.trim())) {
@@ -68,6 +71,7 @@ function validateEmail(email: string) {
   return undefined
 }
 
+// Enforce the minimum password policy used by the registration form.
 function validatePassword(password: string) {
   if (!password) return "Password is required"
   if (password.length < 8) return "Password must be at least 8 characters"
@@ -79,12 +83,14 @@ function validatePassword(password: string) {
   return undefined
 }
 
+// Confirm both password fields match before the account is created.
 function validateConfirmPassword(confirmPassword: string, password: string) {
   if (!confirmPassword) return "Please confirm your password"
   if (confirmPassword !== password) return "Passwords do not match"
   return undefined
 }
 
+// Client-side registration flow with profile fields and social sign-in alternatives.
 const SignUpPage = () => {
   const router = useRouter()
 
@@ -95,6 +101,7 @@ const SignUpPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   //collect form data & update the SignUpValues
+  // Update one controlled field while preserving the rest of the form state.
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setValues((prev) => ({ ...prev, [name]: value })) //name = "name" , value = "Raju"

@@ -33,6 +33,7 @@ export function SocialSignInButtons() {
   const [pendingProvider, setPendingProvider] =
    useState<SocialProvider | null>(null)
 
+  // Delegate OAuth flow to Better Auth and keep provider-specific UI feedback consistent.
   const handleSocialSignIn = async (provider: SocialProvider) => {
     if (pendingProvider) return
 

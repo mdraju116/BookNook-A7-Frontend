@@ -21,10 +21,12 @@ type ReturnBookProps = {
   onReturned: (borrowId: string) => void;
 };
 
+// Return action for a borrow record, protected by a destructive-action confirmation.
 export default function ReturnBook({ borrow, onReturned }: ReturnBookProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isReturning, setIsReturning] = useState(false);
 
+  // Confirm the return with the API before updating the parent borrow list.
   const handleReturn = async () => {
     if (isReturning) return;
 

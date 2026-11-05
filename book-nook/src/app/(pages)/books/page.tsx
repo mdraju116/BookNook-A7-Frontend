@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AllBooksPage() {
+  // Fetch on the server so the catalog has content before the interactive filter mounts.
   let books: Book[] | null = null;
 
   try {

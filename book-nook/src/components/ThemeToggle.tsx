@@ -9,6 +9,7 @@ type ThemeToggleProps = {
   onAction?: () => void;
 };
 
+// Theme control that waits for client hydration before reading the active theme.
 export default function ThemeToggle({ onAction }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
 

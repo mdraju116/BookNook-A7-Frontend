@@ -10,6 +10,7 @@ type BookCardProps = {
   actions?: ReactNode;
 };
 
+// Reusable book summary card shared by discovery, personal library, and search-like views.
 export default function BookCard({ book, isNew = false, actions }: BookCardProps) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#e9e5dc] bg-white shadow-[0_5px_22px_rgba(42,59,46,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(42,59,46,0.11)]">

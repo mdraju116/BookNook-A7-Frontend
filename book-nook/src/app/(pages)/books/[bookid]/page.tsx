@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BookDetailsPage({ params }: PageProps<"/books/[bookid]">) {
+  // Resolve and validate the dynamic route parameter before querying the API.
   const { bookid } = await params;
   if (!/^[\da-f]{24}$/i.test(bookid)) notFound();
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL?.replace(/\/$/, "");

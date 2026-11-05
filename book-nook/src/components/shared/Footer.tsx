@@ -5,6 +5,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 
+// Shared site footer with navigation, project identity, and community messaging.
 const Footer = () => {
   return (
     <footer className="border-t border-[#e8e2d6] bg-[#f1ecdf] text-[#263b30] dark:border-border dark:bg-[#0a0a0a] dark:text-white">

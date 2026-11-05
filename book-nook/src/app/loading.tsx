@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Global fallback shown while a route segment is waiting for server-rendered content.
 export default function Loading() {
   return (
     <main className="bg-[#fbf8f1]">

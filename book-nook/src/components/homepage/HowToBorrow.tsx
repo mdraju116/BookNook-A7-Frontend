@@ -19,6 +19,7 @@ const borrowingSteps = [
           },
         ]
 
+// Static onboarding section explaining the borrowing journey in three steps.
 const HowToBorrow = () => (
   <section className="bg-background">
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-18">

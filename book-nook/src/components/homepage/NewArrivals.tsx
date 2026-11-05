@@ -5,6 +5,7 @@ import BookCard from "@/components/books/BookCard";
 
 import MotionWrapper from "@/components/MotionWrapper";
 
+// Server-rendered homepage section for recently added books.
 export default async function NewArrivals() {
   // Fetch the latest six books from the backend.
   let books: Book[] | null = null;

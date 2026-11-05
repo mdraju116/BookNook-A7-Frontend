@@ -14,6 +14,7 @@ import type { Book } from "@/types/book";
 import MotionWrapper from "@/components/MotionWrapper";
 
 export default function MyBooksPage() {
+  // This client page owns the authenticated collection state and refresh lifecycle.
   const { data: session, isPending } = useSession();
   const user = session?.user;
   const userId = user?.id;
@@ -22,10 +23,12 @@ export default function MyBooksPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reloadCount, setReloadCount] = useState(0);
 
+  // Replace only the edited card so the list stays responsive after a successful update.
   const handleBookUpdated = (updatedBook: Book) => {
     setBooks((currentBooks) => currentBooks.map((book) => book._id === updatedBook._id ? updatedBook : book));
   };
 
+  // Remove a deleted card locally instead of refetching the entire collection.
   const handleBookDeleted = (bookId: string) => {
     setBooks((currentBooks) => currentBooks.filter((book) => book._id !== bookId));
   };
@@ -37,6 +40,7 @@ export default function MyBooksPage() {
 
     let isCurrent = true;
 
+    // Load only the current user's books and ignore late responses after unmounting.
     async function loadBooks() {
       setIsLoading(true);
       setErrorMessage(null);

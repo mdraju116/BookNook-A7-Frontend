@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { BookOpen, House, Search } from "lucide-react"
 
+// Shared 404 experience for invalid routes and missing books.
 export default function NotFoundPage() {
   return (
     <main className="relative flex min-h-[calc(100dvh-9rem)] items-center overflow-hidden bg-[#fffaf8] px-4 py-8 sm:px-8 sm:py-10">

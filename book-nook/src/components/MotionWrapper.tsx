@@ -9,6 +9,7 @@ type MotionWrapperProps = {
   delay?: number;
 };
 
+// Reusable viewport animation wrapper keeps section entrance effects consistent.
 export default function MotionWrapper({ children, delay = 0 }: MotionWrapperProps) {
   return (
     // (Fade In + Slide Up)

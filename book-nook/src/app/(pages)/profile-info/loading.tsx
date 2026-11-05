@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Loading state for profile data and account statistics.
 export default function Loading() {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">

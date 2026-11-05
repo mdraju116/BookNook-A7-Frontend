@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Skeleton state for a book detail request.
 export default function Loading() {
   return (
     <main className="min-h-[70vh] bg-[#faf9f5] px-5 py-12 sm:px-8 sm:py-16">

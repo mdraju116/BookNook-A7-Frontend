@@ -61,6 +61,7 @@ const reviews = [
   },
 ];
 
+// Client-side review carousel showcasing the community experience.
 export default function ReaderReviews() {
   return (
     <section className="bg-[#fbf8f1]">

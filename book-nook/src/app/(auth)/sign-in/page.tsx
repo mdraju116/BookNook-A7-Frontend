@@ -25,17 +25,20 @@ type SignInErrors = {
 
 const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 
+// Keep validation close to the form so field errors are immediate and predictable.
 function validateEmail(email: string) {
   if (!email) return "Email is required"
   if (!EMAIL_PATTERN.test(email)) return "Please enter a valid email address"
   return undefined
 }
 
+// Password presence is checked before calling Better Auth.
 function validatePassword(password: string) {
   if (!password) return "Password is required"
   return undefined
 }
 
+// Client-side sign-in form: validates credentials, handles redirects, and shows request feedback.
 const SignInForm = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -245,6 +248,7 @@ const SignInForm = () => {
   )
 }
 
+// Route entry point for email/password and social authentication.
 const SignInPage = () => {
   return (
     <React.Suspense fallback={<main className="w-full max-w-md px-4 py-12" />}>

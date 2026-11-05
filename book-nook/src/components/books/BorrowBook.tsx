@@ -17,6 +17,7 @@ type BorrowBookProps = {
 
 const BORROW_PERIOD_DAYS = 30;
 
+// Borrow action for a single book, including availability checks and confirmation UI.
 export default function BorrowBook({ book }: BorrowBookProps) {
   const { data: session, isPending } = useSession();
   const user = session?.user;
@@ -27,6 +28,7 @@ export default function BorrowBook({ book }: BorrowBookProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [returnDatePreview, setReturnDatePreview] = useState("");
 
+  // Open confirmation only when the current copy count allows a new borrow.
   const openBorrowDialog = () => {
     const returnDate = new Date();
     returnDate.setDate(returnDate.getDate() + BORROW_PERIOD_DAYS);
@@ -34,6 +36,7 @@ export default function BorrowBook({ book }: BorrowBookProps) {
     setIsOpen(true);
   };
 
+  // Send the authenticated borrow request and close the dialog on success.
   const handleBorrow = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!user || isSubmitting || isUnavailable) return;
@@ -100,15 +103,15 @@ export default function BorrowBook({ book }: BorrowBookProps) {
           </DialogHeader>
 
           <form onSubmit={handleBorrow} className="space-y-4">
-            <label className="block text-sm font-semibold text-[#34463a]">
+            <label className="block text-sm font-semibold text-[#34463a] dark:text-white">
               User name
               <input readOnly value={user?.name || ""} className="mt-1.5 h-10 w-full rounded-lg border border-[#d9e6dc] bg-[#f3f7f3] px-3 font-normal text-[#587060]" />
             </label>
-            <label className="block text-sm font-semibold text-[#34463a]">
+            <label className="block text-sm font-semibold text-[#34463a] dark:text-white">
               Email
               <input readOnly type="email" value={user?.email || ""} className="mt-1.5 h-10 w-full rounded-lg border border-[#d9e6dc] bg-[#f3f7f3] px-3 font-normal text-[#587060]" />
             </label>
-            <p className="text-xs leading-5 text-[#768076]">Return by {returnDatePreview} (30-day borrowing period).</p>
+            <p className="text-xs leading-5 text-[#768076] dark:text-white">Return by {returnDatePreview} (30-day borrowing period).</p>
 
             <DialogFooter className="mt-5">
               <Button type="button" variant="outline" disabled={isSubmitting} onClick={() => setIsOpen(false)}>Cancel</Button>

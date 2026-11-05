@@ -16,6 +16,7 @@ const navlinks = [
   { label: "Add Book", link: "/add-book" },
 ];
 
+// Global navigation: combines route links, theme controls, and the authenticated user menu.
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();

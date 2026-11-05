@@ -13,6 +13,7 @@ import type { Borrow } from "@/types/borrow";
 import type { Book } from "@/types/book";
 import MotionWrapper from "@/components/MotionWrapper";
 
+// Normalize API dates for a consistent, readable borrowing history.
 function formatDate(value?: string) {
   if (!value) return "—";
   const date = new Date(value);
@@ -20,6 +21,7 @@ function formatDate(value?: string) {
   return new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(date);
 }
 
+// Borrowing lasts 30 days; derive the expected return date from the borrow date.
 function getReturnDate(value?: string) {
   if (!value) return undefined;
 
@@ -31,6 +33,7 @@ function getReturnDate(value?: string) {
 }
 
 export default function MyBorrowsPage() {
+  // This client page combines borrow records with book metadata for the table view.
   const { data: session, isPending } = useSession();
   const userId = session?.user?.id;
   const [borrows, setBorrows] = useState<Borrow[]>([]);
@@ -38,6 +41,7 @@ export default function MyBorrowsPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [reloadCount, setReloadCount] = useState(0);
 
+  // Remove a returned item immediately after the API confirms the return.
   const handleBorrowReturned = (borrowId: string) => {
     setBorrows((currentBorrows) => currentBorrows.filter((borrow) => borrow._id !== borrowId));
   };
@@ -47,6 +51,7 @@ export default function MyBorrowsPage() {
 
     let isCurrent = true;
 
+    // Fetch borrows and book details together so each row can display its cover and title.
     async function loadBorrows() {
       setIsLoading(true);
       setErrorMessage(null);

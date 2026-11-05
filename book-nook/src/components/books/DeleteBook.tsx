@@ -22,10 +22,12 @@ type DeleteBookProps = {
   onDeleted: (bookId: string) => void;
 };
 
+// Confirmation action for removing a book owned by the current reader.
 export default function DeleteBook({ book, onDeleted }: DeleteBookProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Delete remotely first, then remove the card from the parent list.
   const handleDelete = async () => {
     if (isDeleting) return;
 

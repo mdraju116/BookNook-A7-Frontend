@@ -11,6 +11,7 @@ type Props = {
     books: Book[] | null;
 };
 
+// Interactive catalog shell: derives categories, applies filters, and renders book cards.
 export default function AllBooksCatalog({ books }: Props) {
     const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -20,6 +21,7 @@ export default function AllBooksCatalog({ books }: Props) {
         return [...new Set(books.map((book) => book.category))].sort();
     }, [books]);
 
+    // Recompute the visible collection only when the API data or selected category changes.
     const filteredBooks = useMemo(() => {
         if (!books) return [];
 

@@ -29,6 +29,7 @@ const colors = [
     "#0088fe", // Blue
 ];
 
+// Build the polygon path used by the custom category chart bars.
 const getPath = (
     x: number,
     y: number,
@@ -45,6 +46,7 @@ const getPath = (
     Z`;
 };
 
+// Custom Recharts shape that gives each category bar a book-like visual treatment.
 const TriangleBar = (props: BarShapeProps) => {
     const { x, y, width, height, index, isActive } = props;
 
@@ -65,12 +67,14 @@ const TriangleBar = (props: BarShapeProps) => {
         />
     );
 };
+// Render the category name above each chart bar with the chart's coordinate system.
 const CustomColorLabel = (props: LabelProps) => {
     const fill = colors[(props.index ?? 0) % colors.length];
 
     return <Label {...props} fill={fill} />;
 };
 
+// Fetch and visualize category totals for the homepage discovery section.
 export default function TopCategories() {
     const [categories, setCategories] = useState<CategoryData[]>([]);
     const [loading, setLoading] = useState(true);

@@ -3,6 +3,7 @@ import { auth, db } from "@/lib/auth"
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"]
 
+// Server-side book creation endpoint: authenticates the reader and validates every field.
 export async function POST(request: Request) {
   try {
     const session = await auth.api.getSession({ headers: request.headers })

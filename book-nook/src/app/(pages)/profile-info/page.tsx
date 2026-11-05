@@ -14,6 +14,7 @@ import { FaUser } from "react-icons/fa"
 import { BookPlus, BookOpen, KeyRound, LogOut, Pencil, Save, X } from "lucide-react"
 import MotionWrapper from "@/components/MotionWrapper";
 
+// Account dashboard for profile editing, password changes, statistics, and sign-out.
 const ProfileInfoPage = () => {
   const router = useRouter()
   const { data: session, isPending } = useSession()
@@ -37,6 +38,7 @@ const ProfileInfoPage = () => {
 
     let isCurrent = true
 
+    // Load contribution and borrowing counts independently from the auth profile request.
     async function loadStats() {
       setIsLoadingStats(true)
       setStatsError(false)
@@ -92,6 +94,7 @@ const ProfileInfoPage = () => {
   }
 
   // Save profile changes through Better Auth.
+  // Persist editable profile fields through Better Auth and refresh the session view.
   const handleUpdateProfile = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (isSaving) return
@@ -114,6 +117,7 @@ const ProfileInfoPage = () => {
   }
 
   // Change the signed-in user's password.
+  // Change the password only after validating both the current and new credentials.
   const handleChangePassword = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (isSaving) return
@@ -137,6 +141,7 @@ const ProfileInfoPage = () => {
   }
 
   // Sign out and return to the home page.
+  // End the session and return the reader to the public home page.
   const handleSignOut = async () => {
     if (isSigningOut) return
 

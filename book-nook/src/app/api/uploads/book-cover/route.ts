@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 
 export async function POST(request: Request) {
+  // Proxy cover uploads through the server so the ImgBB API key never reaches the browser.
   try {
     const session = await auth.api.getSession({ headers: request.headers })
     if (!session?.user) {

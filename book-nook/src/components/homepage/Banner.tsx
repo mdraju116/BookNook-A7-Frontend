@@ -40,6 +40,7 @@ const slides: { image: string; title: string; description: string; alt: string }
   },
 ];
 
+// Hero section that introduces the library and directs readers to the catalog.
 const Banner = () => {
   const [isLoading, setIsLoading] = useState(true);
 

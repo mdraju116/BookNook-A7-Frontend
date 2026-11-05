@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Skeleton state for the add-book page.
 export default function Loading() {
   return (
     <main className="bg-[#f7fbf7] px-4 py-10 sm:py-14">

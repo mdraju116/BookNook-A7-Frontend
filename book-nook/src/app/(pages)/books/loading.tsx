@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Skeleton state for the catalog while its server request resolves.
 export default function Loading() {
   return (
     <main className="min-h-[70vh] bg-[#faf9f5]">

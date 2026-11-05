@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
+// Loading state for the authenticated reader's contributed books.
 export default function Loading() {
   return (
     <main className="min-h-[70vh] bg-[#faf9f5]">
