@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import {
     BarChart,
     Bar,
-    Cell,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -24,8 +23,8 @@ type CategoryData = {
 
 const colors = [
     "#8884d8", // Purple
-    "#82ca9d", // Green
     "#ffc658", // Yellow
+    "#82ca9d", // Green
     "#ff8042", // Orange
     "#0088fe", // Blue
 ];
@@ -47,24 +46,24 @@ const getPath = (
 };
 
 const TriangleBar = (props: BarShapeProps) => {
-  const { x, y, width, height, index, isActive } = props;
+    const { x, y, width, height, index, isActive } = props;
 
-  const color = colors[(index ?? 0) % colors.length];
+    const color = colors[(index ?? 0) % colors.length];
 
-  return (
-    <path
-      d={getPath(
-        Number(x),
-        Number(y),
-        Number(width),
-        Number(height)
-      )}
-      stroke={color}
-      strokeWidth={isActive ? 3 : 0}
-      fill={color}
-      style={{ transition: "stroke-width 0.3s ease-out" }}
-    />
-  );
+    return (
+        <path
+            d={getPath(
+                Number(x),
+                Number(y),
+                Number(width),
+                Number(height)
+            )}
+            stroke={color}
+            strokeWidth={isActive ? 3 : 0}
+            fill={color}
+            style={{ transition: "stroke-width 0.3s ease-out" }}
+        />
+    );
 };
 const CustomColorLabel = (props: LabelProps) => {
     const fill = colors[(props.index ?? 0) % colors.length];
@@ -169,12 +168,28 @@ export default function TopCategories() {
                                         opacity={0.12}
                                     />
 
-                                    <Tooltip
+                                    {/* <Tooltip
                                         cursor={{ fill: "#068a3f", fillOpacity: 0.08 }}
                                         formatter={(value) => [
                                             `${value} `,
                                             "Total Books",
                                         ]}
+                                    /> */}
+                                    <Tooltip
+                                        cursor={{ fill: "#068a3f", fillOpacity: 0.08 }}
+                                        contentStyle={{
+                                            backgroundColor: "white",
+                                            border: "1px solid #068a3f",
+                                            borderRadius: "8px",
+                                            color: "#000000",
+                                        }}
+                                        labelStyle={{
+                                            color: "#000000",
+                                        }}
+                                        itemStyle={{
+                                            color: "#000000",
+                                        }}
+                                        formatter={(value) => [`${value}`, "Total Books"]}
                                     />
 
                                     <XAxis

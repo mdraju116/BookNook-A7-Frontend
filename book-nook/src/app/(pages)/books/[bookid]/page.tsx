@@ -73,18 +73,18 @@ export default async function BookDetailsPage({ params }: PageProps<"/books/[boo
               Available Copies: <span className="text-base font-extrabold leading-none">{typeof book.totalCopies === "number" ? book.totalCopies : 1}</span>
             </p>
           </div>
-          <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#263b30] dark:text-white sm:text-4xl">{book.title || "Untitled book"}</h1>
+          <h1 className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#263b30]  sm:text-4xl">{book.title || "Untitled book"}</h1>
           <p className="mt-3 text-lg text-[#687168]">by <span className="font-semibold text-[#405548]">{book.author || "Unknown author"}</span></p>
 
           <div className="my-8 h-px bg-[#e9e5dc]" />
 
           <section aria-labelledby="book-description-heading">
-            <h2 id="book-description-heading" className="font-serif text-xl font-bold text-[#263b30] dark:text-white">About this book</h2>
+            <h2 id="book-description-heading" className="font-serif text-xl font-bold text-[#263b30] ">About this book</h2>
             <p className="mt-3 whitespace-pre-line text-[15px] leading-7 text-[#687168]">{book.description || "No description has been added for this book yet."}</p>
           </section>
 
           <section className="mt-8 rounded-2xl bg-[#f5f7f2] p-5" aria-labelledby="added-by-heading">
-            <h2 id="added-by-heading" className="text-xs font-bold uppercase tracking-[0.14em] text-[#829080] dark:text-white">Added by</h2>
+            <h2 id="added-by-heading" className="text-xs font-bold uppercase tracking-[0.14em] text-[#829080] ">Added by</h2>
             <div className="mt-3 flex items-start gap-3 text-[#405548]">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e5ece3] text-[#068a3f]"><UserRound size={19} /></span>
               <div className="min-w-0">

@@ -69,6 +69,7 @@ const UserMenu = () => {
 
   // check if user logged in or not
   const user = session?.user
+ 
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -81,7 +82,7 @@ const UserMenu = () => {
             aria-expanded={isDropdownOpen}
             aria-haspopup="menu"
             aria-label="Open user menu"
-            className="flex items-center gap-2 rounded-full p-1 transition-colors outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-[#068a3f]/40 dark:hover:bg-[#068a3f]"
+            className="flex items-center gap-2 rounded-full p-1 transition-colors outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-[#068a3f]/40 dark:hover:bg-[#068a3f]/50"
           >
             {/* Show real image or default user icon */}
             <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#068a3f]/10 text-[#068a3f] ">

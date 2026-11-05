@@ -24,7 +24,8 @@ const Navbar = () => {
     link === "/" ? pathname === "/" : pathname === link || pathname.startsWith(`${link}/`);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
+    // <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-[#e8e2d6] bg-[#fbf8f1]/95 backdrop-blur-md dark:border-border dark:bg-background/95">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="flex min-h-19 items-center justify-between gap-6">
 
